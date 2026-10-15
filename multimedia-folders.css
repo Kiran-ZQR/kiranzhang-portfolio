@@ -1,0 +1,38 @@
+/* Stacked file tabs inspired by Mosby Files. Native glass layers inspired by
+   React Bits GlassIcons: tilted plate, frosted face, bevel and pointer reflection. */
+*{box-sizing:border-box}
+body{margin:0;background:#080809;color:#f4f4f5;font-family:Arial,'Microsoft YaHei',sans-serif;-webkit-font-smoothing:antialiased}
+.folder-gallery{width:min(1240px,90vw);margin:0 auto;padding:165px 0 80px;isolation:isolate}
+.project-folder{--surface:#242427;position:relative;margin-bottom:28px;filter:drop-shadow(0 18px 24px #0003)}
+.project-folder:nth-child(2){--surface:#171719}
+.folder-tab{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;min-height:66px;padding:0 32px 0 0;background:transparent;color:#d6d6dc;border:0;text-align:left;cursor:pointer;font:inherit}
+.folder-tab::before{content:"";position:absolute;z-index:-1;inset:30px 0 0;border-radius:0 20px 0 0;background:var(--surface);border:1px solid #ffffff21;border-bottom:0}
+.tab-name{position:relative;display:flex;align-items:center;min-height:66px;min-width:320px;padding:0 40px 0 30px;border-radius:20px 34px 0 0;background:var(--surface);border:1px solid #ffffff21;border-bottom:0;font-size:21px;font-weight:400;letter-spacing:-.02em;clip-path:polygon(0 0,89% 0,100% 100%,0 100%)}
+.tab-meta{display:flex;align-items:center;gap:25px;padding-top:25px;font:10px monospace;letter-spacing:1.4px;color:#99999f}.tab-meta i{font:22px Arial;color:#eee;font-style:normal}
+.folder-panel{display:grid;grid-template-rows:0fr;background:var(--surface);border:1px solid #ffffff21;border-top:0;border-radius:0 0 20px 20px;transition:grid-template-rows .85s cubic-bezier(.22,1,.36,1);overflow:hidden}
+.folder-content{min-height:0;overflow:hidden;display:grid;grid-template-columns:34% 66%;opacity:0;transition:opacity .4s ease}
+.project-folder.is-open .folder-panel{grid-template-rows:1fr}
+.project-folder.is-open .folder-content{opacity:1;transition:opacity .6s .12s ease}
+.folder-info{padding:45px 32px 40px;align-self:center}
+.project-type{font:10px monospace;letter-spacing:1.8px;color:#a7a7af;margin:35px 0 18px}
+.folder-info h1{font-size:clamp(30px,3.1vw,46px);line-height:1.18;font-weight:400;letter-spacing:-.04em;margin:0 0 22px}
+.folder-description{font-size:13px;line-height:1.9;color:#a8a8ae;max-width:240px;margin:0 0 30px}
+.folder-enter{display:inline-flex;align-items:center;gap:40px;text-decoration:none;color:#e8e8ed;border:1px solid #ffffff35;border-radius:30px;padding:13px 20px;font-size:13px;background:#ffffff09;transition:background .3s,border-color .3s}
+.folder-enter:hover{background:#ffffff18;border-color:#ffffff65}
+.folder-preview{display:flex;position:relative;flex-direction:column;align-self:stretch;min-height:420px;max-height:560px;margin:24px 24px 24px 0;overflow:hidden;border-radius:12px;background:#eaeaec;text-decoration:none;color:#27272d;border:1px solid #ffffff26}
+.folder-preview img{display:block;width:100%;height:100%;min-height:0;flex:1;object-fit:cover;transition:transform 1s cubic-bezier(.22,1,.36,1)}
+.sent-preview{background:#070707;color:#ddd}.sent-preview img{object-fit:contain}
+.preview-caption{display:flex;justify-content:space-between;padding:16px 20px;font:9px monospace;letter-spacing:1.5px;background:#eeeeef;border-top:1px solid #0001;z-index:1}.sent-preview .preview-caption{background:#111113}.preview-caption i{font:18px Arial;font-style:normal}
+.glass-folder-icon{width:74px;height:65px;position:relative;perspective:500px}
+.icon-plate{position:absolute;inset:6px 3px 0;background:linear-gradient(135deg,#9999a3,#404047);border:1px solid #fff4;border-radius:10px;transform:rotate(-12deg);transform-origin:90% 100%;transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.icon-plate::before{content:"";position:absolute;width:30px;height:12px;left:-1px;top:-8px;background:#92929b;border-radius:7px 10px 0 0;border-top:1px solid #fff5}
+.icon-paper{position:absolute;inset:12px 10px 8px;background:linear-gradient(#e7e7ed,#a2a2ab);border-radius:5px;transform:rotate(5deg);transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.icon-glass{position:absolute;inset:22px -2px -3px;display:grid;place-items:center;border:1px solid #fff6;border-radius:11px;background:radial-gradient(ellipse at var(--shine-x,25%) 0%,#ffffff60,transparent 70%),linear-gradient(145deg,#ffffff20,#ffffff08);backdrop-filter:blur(7px) saturate(.5);-webkit-backdrop-filter:blur(7px) saturate(.5);box-shadow:inset 0 2px 2px #fff5,inset 0 -1px 3px #fff3,0 10px 20px #0005;color:#fff;font-size:24px;text-shadow:0 1px 3px #0006;transform:rotateX(-8deg);transform-origin:50% 100%;transition:transform .65s cubic-bezier(.22,1,.36,1)}
+.project-folder.is-open .icon-plate{transform:rotate(-18deg)}
+.project-folder.is-open .icon-paper{transform:translateY(-5px) rotate(7deg)}
+.folder-tab:focus-visible,.folder-enter:focus-visible,.folder-preview:focus-visible{outline:2px solid #d7d7e0;outline-offset:4px}
+.folder-tab:focus-visible{outline-offset:6px;border-radius:18px}
+@media(hover:hover){.folder-preview:hover img{transform:scale(1.025)}.project-folder:hover .icon-glass{transform:rotateX(-24deg)}.project-folder:hover .icon-paper{transform:translateY(-10px) rotate(9deg)}}
+@supports not (backdrop-filter:blur(1px)){.icon-glass{background:linear-gradient(145deg,#9b9ba1ee,#57575dee)}}
+@media(max-width:760px){.folder-gallery{width:calc(100% - 32px);padding:130px 0 45px}.folder-tab{padding-right:14px}.tab-name{min-width:0;width:68%;padding:0 25px 0 18px;font-size:16px}.tab-meta{font-size:0;gap:0}.tab-meta i{font-size:20px}.folder-content{grid-template-columns:1fr}.folder-info{padding:28px 22px}.glass-folder-icon{float:right;scale:.8;transform-origin:100% 0}.project-type{margin:0 0 16px;font-size:9px}.folder-info h1{font-size:33px}.folder-description{max-width:80%;margin-bottom:20px}.folder-preview{min-height:240px;max-height:340px;margin:0 16px 16px}.folder-preview img{height:230px}.preview-caption{font-size:8px;letter-spacing:.8px}.project-folder{margin-bottom:18px}}
+@media(prefers-reduced-motion:reduce){.folder-panel,.folder-content,.folder-preview img,.icon-plate,.icon-paper,.icon-glass{transition:none!important}}
