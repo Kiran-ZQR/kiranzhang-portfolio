@@ -5,7 +5,8 @@
  try{
   const pdfjs=await import('./assets/vendor/pdfjs/pdf.mjs');
   pdfjs.GlobalWorkerOptions.workerSrc='assets/vendor/pdfjs/pdf.worker.mjs';
-  const documentPDF=await pdfjs.getDocument({url:'assets/cv.pdf',cMapUrl:'assets/vendor/pdfjs/cmaps/',cMapPacked:true,standardFontDataUrl:'assets/vendor/pdfjs/standard_fonts/',wasmUrl:'assets/vendor/pdfjs/wasm/'}).promise;
+  const assetURL=relative=>new URL(relative,document.baseURI).href;
+  const documentPDF=await pdfjs.getDocument({url:assetURL('assets/cv.pdf'),cMapUrl:assetURL('assets/vendor/pdfjs/cmaps/'),cMapPacked:true,standardFontDataUrl:assetURL('assets/vendor/pdfjs/standard_fonts/'),wasmUrl:assetURL('assets/vendor/pdfjs/wasm/')}).promise;
   for(let number=1;number<=documentPDF.numPages;number++){
    const page=await documentPDF.getPage(number),natural=page.getViewport({scale:1});
    const width=Math.min(1100,viewer.clientWidth-2),ratio=Math.min(devicePixelRatio||1,2);
