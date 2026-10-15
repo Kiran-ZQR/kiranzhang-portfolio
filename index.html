@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>KIRAN ZHANG — Portfolio</title>
+  <meta name="description" content="Kiran Zhang 的个人作品集首页，探索交互叙事、人工智能与体验设计。">
+  <link rel="stylesheet" href="style.css?v=20261008-21">
+</head>
+<body>
+  <video id="background-video" muted loop playsinline aria-hidden="true"></video>
+  <div class="video-shade" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <nav class="hover-nav" aria-label="Primary navigation">
+      <a class="nav-link is-active" href="#home" aria-current="page">Home</a>
+      <a class="nav-link" href="#projects">Projects</a>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link resume-link" href="resume.html" title="View my CV">Resume</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero-shell" id="home" aria-label="Portfolio introduction">
+      <div class="editorial-hero">
+        <h1 aria-label="KIRAN ZHANG"><span id="words" class="words" aria-hidden="true"></span></h1>
+        <span class="floating-tag tag-one">Empathetic</span><span class="floating-tag tag-two">Inventive</span><span class="floating-tag tag-three">Analytical</span>
+      </div>
+      <footer class="site-footer" id="about">
+        <p class="designer-statement">An <strong>Experience designer</strong> driven by <strong>Interactive narratives</strong> and <strong>AI technology</strong>, exploring diverse possibilities in design.</p>
+        <div class="local-time"><time id="local-clock" aria-label="本地时间">--:--</time><span>Your local time</span></div>
+      </footer>
+    </section>
+    <section class="projects-section scroll-section" id="projects" aria-label="Selected projects">
+      <header class="projects-intro" aria-label="Selected work introduction">
+        <p class="projects-kicker"><i aria-hidden="true"></i>Selected Work</p>
+        <p class="projects-meta"><span>04 categories</span><span>2023—2026</span></p>
+      </header>
+      <div class="project-gallery">
+        <div class="border-glow-shell">
+          <a class="project-card project-card-one reveal-card project-link" href="tencent-news.html#business" aria-label="Open Tencent News Internship case study">
+            <div class="project-visual" aria-hidden="true"><img src="assets/project-card-1.png" alt=""></div>
+            <p class="project-role">UX Designer &amp; AI Coding</p>
+            <div class="project-copy"><h2>Tencent News Internship</h2><p>Focusing on growth business needs in WeChat plugins and individual exploratory business needs.</p></div>
+          </a>
+        </div>
+        <div class="border-glow-shell">
+          <a class="project-card project-card-two reveal-card project-link" href="academic-projects.html" aria-label="Open Academic Projects collection">
+            <div class="project-visual" aria-hidden="true"><img src="assets/project-card-2.png" alt=""></div>
+            <p class="project-role">UX Designer &amp; Developer</p>
+            <div class="project-copy"><h2>Academic Projects</h2><p>A self-initiated UX case study to tackle a real-world problem I identified, driven by user research and validated through iterative prototyping.</p></div>
+          </a>
+        </div>
+        <div class="border-glow-shell">
+          <a class="project-card project-card-three reveal-card project-link" href="multimedia-projects.html" aria-label="进入 Multimedia Design：生命之轮与 SentAIment">
+            <div class="project-visual" aria-hidden="true"><img src="assets/project-card-3.png" alt=""></div>
+            <p class="project-role">HCI Designer &amp; Programmer</p>
+            <div class="project-copy"><h2>Multimedia Design</h2><p>An immersive experience that weaves artistic narrative with deep user insights through interactive installation.</p></div>
+          </a>
+        </div>
+        <div class="border-glow-shell">
+          <a class="project-card project-card-four reveal-card" href="aigc.html" aria-label="AIGC · 查看作品">
+            <div class="project-visual" aria-hidden="true"><img src="assets/project-card-4.png" alt=""></div>
+            <p class="project-role">AIGC &amp; Programmer</p>
+            <div class="project-copy"><h2>Other Works</h2><p>Incorporating 3D modeling, AI-generated content (AIGC), multimedia art, and Arduino programming.</p></div>
+          </a>
+        </div>
+      </div>
+    </section>
+    <footer class="final-footer contact-footer" id="contact" aria-label="Contact">
+      <svg class="contact-geometry" viewBox="0 0 1440 560" preserveAspectRatio="none" aria-hidden="true">
+        <path class="geometry-path path-one" d="M0 18H426V558H0" />
+        <path class="geometry-path path-two" d="M426 18H852V224C852 302 756 336 640 336C524 336 426 304 426 224Z" />
+        <path class="geometry-path path-three" d="M0 370C125 302 276 315 348 386C408 444 418 501 418 560" />
+      </svg>
+      <div class="contact-layout">
+        <div class="contact-copy">
+          <h2 aria-label="At the Nexus of Technology and Narrative">
+            <span class="contact-line"><span>At the Nexus</span></span>
+            <span class="contact-line"><span>of Technology</span></span>
+            <span class="contact-line"><span>and Narrative<span class="contact-cursor" aria-hidden="true"></span></span></span>
+          </h2>
+          <p>Let’s make an impact</p>
+        </div>
+        <div class="contact-details">
+          <div class="contact-block contact-primary"><span>Contact me</span><a href="mailto:zhangqingran02@163.com">zhangqingran02@163.com</a></div>
+          <div class="contact-block"><strong>Networks</strong><p>LinkedIn, Behance, Instagram</p></div>
+          <div class="contact-block"><strong>Quick Links</strong><p><a href="#home">Home</a>, <a href="#projects">Work</a>, <a href="#contact">Contact</a></p></div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <p id="status" class="hint" role="status">正在准备字母图片…</p>
+  <script src="config.js?v=20261007-17"></script>
+  <script src="app.js?v=20261008-20"></script>
+</body>
+</html>
