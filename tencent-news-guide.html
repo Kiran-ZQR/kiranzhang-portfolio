@@ -7,13 +7,13 @@
   <title>Immersive Feed Swipe Guidance — Kiran Zhang</title>
   <meta name="description" content="腾讯新闻微信插件沉浸流上滑引导样式调整。">
   <link rel="stylesheet" href="project-detail.css?v=20261008-35">
-</head>
+<link rel="stylesheet" href="project-glass.css?v=20261016-2"></head>
 <body>
   <div class="reading-progress" aria-hidden="true"><i></i></div>
   <header class="case-header glass-surface-adapt">
     <div class="detail-nav-shell">
       <div class="primary-island">
-        <a class="island-orb" href="index.html#projects" aria-label="Back to selected projects"><img src="assets/project-detail/portfolio-orb.jpg" alt=""></a>
+        <a class="island-orb" href="index.html#projects" aria-label="Back to selected projects"><img decoding="async" src="assets/project-detail/portfolio-orb.jpg" alt=""></a>
         <nav class="case-nav" aria-label="Primary navigation">
           <a href="index.html#home">Home</a>
           <a class="is-active" href="index.html#projects" aria-current="page">Projects</a>
@@ -53,18 +53,18 @@
         <div class="guide-problem-grid">
           <figure class="guide-phone-card story-piece" style="--order:0">
             <span>现网首条内容</span>
-            <img src="assets/project-detail/guide-issue-left.png" alt="首条视频底部控件造成不能上滑的暗示">
+            <img decoding="async" src="assets/project-detail/guide-issue-left.png" alt="首条视频底部控件造成不能上滑的暗示">
             <figcaption>受微信底部原生控件影响，部分用户误以为“不能上滑”，只消费首条视频即退出</figcaption>
           </figure>
           <div class="guide-problem-center story-piece" style="--order:1">
             <p><b>“不能上滑”</b><span>微信底部原生控件带来的错误暗示</span></p>
-            <img class="guide-problem-arrow" src="assets/project-detail/guide-arrow-down.svg" alt="" aria-hidden="true">
+            <img loading="lazy" decoding="async" class="guide-problem-arrow" src="assets/project-detail/guide-arrow-down.svg" alt="" aria-hidden="true">
             <p><b>推荐流触达受阻</b><span>部分用户只消费首条视频即退出</span></p>
             <strong>更明确，拉流量，提兴趣</strong>
           </div>
           <figure class="guide-phone-card story-piece" style="--order:2">
             <span>现有教程式引导</span>
-            <img src="assets/project-detail/guide-issue-right-c.png" alt="遮挡底部信息的上滑教程引导">
+            <img loading="lazy" decoding="async" src="assets/project-detail/guide-issue-right-c.png" alt="遮挡底部信息的上滑教程引导">
             <figcaption>现在端上有教程类的上拉引导，遮挡底部信息文字，信息密度低</figcaption>
           </figure>
         </div>
@@ -79,16 +79,16 @@
         </header>
         <div class="guide-solution-layout">
           <div class="guide-before-after">
-            <img class="guide-transition-curve" src="assets/project-detail/guide-curve-solution.svg" alt="" aria-hidden="true">
-            <figure class="story-piece" style="--order:0"><img src="assets/project-detail/guide-solution-panel.png" alt="调整前的沉浸视频页"><figcaption>停留 5s</figcaption></figure>
-            <img class="guide-side-arrow" src="assets/project-detail/guide-arrow-side.svg" alt="" aria-hidden="true">
-            <figure class="story-piece" style="--order:1"><img src="assets/project-detail/guide-solution-extra.png" alt="增加下一条内容引导后的沉浸视频页"><figcaption>信息条上推</figcaption></figure>
+            <img loading="lazy" decoding="async" class="guide-transition-curve" src="assets/project-detail/guide-curve-solution.svg" alt="" aria-hidden="true">
+            <figure class="story-piece" style="--order:0"><img loading="lazy" decoding="async" src="assets/project-detail/guide-solution-panel.png" alt="调整前的沉浸视频页"><figcaption>停留 5s</figcaption></figure>
+            <img loading="lazy" decoding="async" class="guide-side-arrow" src="assets/project-detail/guide-arrow-side.svg" alt="" aria-hidden="true">
+            <figure class="story-piece" style="--order:1"><img loading="lazy" decoding="async" src="assets/project-detail/guide-solution-extra.png" alt="增加下一条内容引导后的沉浸视频页"><figcaption>信息条上推</figcaption></figure>
           </div>
           <div class="guide-preview story-piece" style="--order:2">
             <span class="guide-preview-kicker">更强引导，更多信息</span>
-            <div class="guide-swipe-icon" aria-hidden="true"><img src="assets/project-detail/guide-chevron-up.svg" alt=""></div>
+            <div class="guide-swipe-icon" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/project-detail/guide-chevron-up.svg" alt=""></div>
             <h3>向上滑动</h3>
-            <div class="guide-next-card"><img src="assets/project-detail/guide-next-cover.png" alt="下一条视频封面"><p><small>上滑播放下一条视频</small><strong>气候变化对健康的威胁创历史新高，呼吁…</strong></p><b aria-hidden="true">×</b></div>
+            <div class="guide-next-card"><img loading="lazy" decoding="async" src="assets/project-detail/guide-next-cover.png" alt="下一条视频封面"><p><small>上滑播放下一条视频</small><strong>气候变化对健康的威胁创历史新高，呼吁…</strong></p><b aria-hidden="true">×</b></div>
             <dl><div><dt>下一条封面</dt></div><div><dt>下一条信息内容</dt><dd>吸引阅读兴趣</dd></div><div><dt>自主关闭</dt></div></dl>
           </div>
         </div>
@@ -120,6 +120,6 @@
     <a class="footer-home" href="index.html#home"><span>Back to homepage</span><i aria-hidden="true">↗</i></a>
     <div class="footer-bottom"><a href="mailto:zhangqingran02@163.com">zhangqingran02@163.com</a><small>© 2026 Kiran Zhang</small></div>
   </footer>
-  <script src="project-detail.js?v=20261008-12"></script>
+  <script src="project-detail.js?v=20261016-2"></script>
 </body>
 </html>

@@ -95,7 +95,7 @@ function initGlassSurface() {
   new ResizeObserver(() => requestAnimationFrame(updateMap)).observe(surface);
 }
 
-initGlassSurface();
+// Shared navigation CSS supplies local glass surfaces; avoid a full-width SVG filter.
 
 document.querySelectorAll('.typewriter-title').forEach((title) => {
   const textNodes = [];

@@ -41,7 +41,7 @@
   wheelScene.environment=api.environment;wheelScene.add(new T.HemisphereLight(0xffffff,0xa9ad96,2));const wheelLight=new T.DirectionalLight(0xffffff,3);wheelLight.position.set(4,5,4);wheelScene.add(wheelLight);
   const clothDestination=new T.Vector3(), wheelDestination=new T.Vector3(), cameraLook=new T.Vector3();
   const homeTarget=new T.Vector3(0,1.1,0), fabricTarget=new T.Vector3(-.12,1.08,0);
-  const fabric=document.createElement('canvas'); fabric.width=1000;fabric.height=2048;
+  const fabric=document.createElement('canvas'); fabric.width=600;fabric.height=1000;
   const ink=fabric.getContext('2d'), texture=new T.CanvasTexture(fabric);texture.colorSpace=T.SRGBColorSpace;texture.minFilter=T.NearestFilter;texture.magFilter=T.NearestFilter;texture.generateMipmaps=false;
   // Continue the existing breast-beam path into a hanging front fabric, not a floating panel.
   const path=[[.95,1.46],[.95,.95],[.95,.35],[.95,-.68]];
@@ -51,7 +51,7 @@
   const surface=new T.Mesh(geometry,new T.MeshBasicMaterial({map:texture,transparent:true,side:T.DoubleSide,depthWrite:true}));surface.name='Growing continuous tapestry';
   const originalCloth=cloth.getObjectByName('Continuous woven cloth');originalCloth.position.set(0,0,0);originalCloth.geometry=geometry.clone();originalCloth.material=originalCloth.material.clone();originalCloth.material.color.set('#ffffff');originalCloth.visible=true;surface.position.z=.003;cloth.add(surface);
   const sample=document.createElement('canvas');sample.width=700;sample.height=1300;window.drawLifeTextile(sample.getContext('2d'),700,1300,null);const sampleTexture=new T.CanvasTexture(sample);sampleTexture.colorSpace=T.SRGBColorSpace;
-  let cache=[], drag=null, transitionStart=0, split=0, dirty=true, guideStart=0, raf, saveTimer;
+  let cache=[], drag=null, transitionStart=0, split=0, dirty=true, renderNeeded=true, guideStart=0, raf, saveTimer;
   window.addEventListener('element-pattern-ready',()=>{dirty=true;});
   let evolving=false, evolutionTicks=0, evolutionAt=0, pendingEvolution=false, settleTimer, finishAfterEvolution=false;
   savedPatterns.forEach((p,i)=>{if(i<state.segments.length&&Array.isArray(p.grid)&&p.grid.length===W*H&&p.grid.every(v=>Number.isInteger(v)&&v>=0&&v<=5))cache[i]={element:state.segments[i].element,grid:Uint8Array.from(p.grid),next:Uint8Array.from(p.grid),planted:Number.isInteger(p.planted)?p.planted:Math.ceil(state.segments[i].angle/S.TAU*40),generations:Number.isInteger(p.generations)?Math.max(0,p.generations):0};});
@@ -85,6 +85,7 @@
     texture.needsUpdate=true;dirty=false;
   }
   function update(){
+    renderNeeded=true;
     const info=S.summary(state), playing=state.stage!=='landing';
     originalCloth.visible=true;const clothMap=info.hasArtwork?null:sampleTexture;if(originalCloth.material.map!==clothMap){originalCloth.material.map=clothMap;originalCloth.material.needsUpdate=true;}
     const status=document.querySelector('#reference-status');if(status)status.textContent=evolving?`生命演化 · 第 ${evolutionTicks} / 18 代`:info.turns>=LIMIT?'已达 128 圈，请保存作品后重新开始':state.dragging?`正在织入 · ${Math.round(info.currentProgress*100)}%`:info.hasArtwork?(state.queuedElement!=null?`下一圈：${names[state.queuedElement]} · 已织内容保留`:'继续转动，或完成作品'):'先选五行，再转动织轮';
@@ -119,7 +120,7 @@
     clothDestination.copy(clothCamera.position);wheelDestination.copy(wheelCamera.position);
     clothCamera.updateProjectionMatrix();wheelCamera.updateProjectionMatrix();wheelCamera.updateMatrixWorld();
   }
-  function resize(){stopDrag();renderer.setSize(host.clientWidth,host.clientHeight);positionCameras();}
+  function resize(){stopDrag();renderer.setSize(host.clientWidth,host.clientHeight);positionCameras();renderNeeded=true;}
   function start(){if(state.stage!=='landing')return;document.body.classList.add('skip-intro');dispatch('ENTER');split=0;transitionStart=performance.now();resize();}
   function interruptEvolution(){clearTimeout(settleTimer);if(evolving){evolving=false;pendingEvolution=true;finishAfterEvolution=false;update();persist();}}
   function rotate(delta){if(state.stage!=='weaving'||document.querySelector('dialog[open]'))return;interruptEvolution();guideStart=0;const capped=Math.min(delta,LIMIT*S.TAU-state.wheelAngle);const before=state.effectiveAngle;dispatch('ROTATE',{delta:capped});crank.rotation.x=-state.wheelAngle;beater.position.z=Math.sin(state.wheelAngle*4)*.015;pedals.position.y=Math.sin(state.wheelAngle*2)*.008;renderer.shadowMap.needsUpdate=true;if(before!==state.effectiveAngle){dirty=true;pendingEvolution=true;}$('.dial-label').textContent='松手，观看演化';}
@@ -137,7 +138,7 @@
   $('#leave').onclick=()=>{stopDrag();evolving=false;pendingEvolution=false;clearTimeout(settleTimer);dispatch('RETURN_HOME');split=0;resize();};
   document.querySelectorAll('[data-element]').forEach((el,i)=>el.onclick=()=>dispatch('SELECT_ELEMENT',{element:i}));
   function result(){stopDrag();if(pendingEvolution){finishAfterEvolution=true;beginEvolution();return;}dispatch('FINISH');if(dirty)paint();const info=S.summary(state), canvas=$('#result'),p=canvas.getContext('2d');
-    canvas.width=1000;canvas.height=info.hasArtwork?fabric.height:300;p.clearRect(0,0,canvas.width,canvas.height);
+    canvas.width=info.hasArtwork?fabric.width:1000;canvas.height=info.hasArtwork?fabric.height:300;p.clearRect(0,0,canvas.width,canvas.height);
     if(info.hasArtwork)p.drawImage(fabric,0,0);else{p.fillStyle='#eae7df';p.fillRect(0,0,1000,300);p.fillStyle='#717963';p.font='24px serif';p.textAlign='center';p.fillText('尚未织入第一缕线。回到织轮，开始一次相遇。',500,150);}
     $('#download').disabled=!info.hasArtwork;$('#result-caption').textContent=`${info.turns.toFixed(2)} 圈 · ${cache.reduce((n,p)=>n+(p.generations||0),0)} 代演化 · ${info.elementSequence.map(i=>names[i]).join(' → ')||'等待第一缕线'}`;$('#completion').showModal();
   }
@@ -147,11 +148,12 @@
   $('#new-game').onclick=()=>{if(!confirm('重新开始将清空当前创作，请先保存作品。继续吗？'))return;dispatch('RESET');cache=[];dirty=true;split=0;crank.rotation.x=0;beater.position.z=0;pedals.position.y=0;$('#completion').close();resize();start();transitionStart=performance.now()-1400;split=1;dispatch('APPROACH_DONE');};
   $('#download').onclick=()=>{const link=document.createElement('a');link.download=`生命织物-${Date.now()}.png`;link.href=$('#result').toDataURL('image/png');link.click();};
   function draw(t){
-    if(!document.hidden){
+    if(!document.hidden&&!document.body.classList.contains('intro-pending')){
       if(evolving&&state.stage==='weaving'&&!document.querySelector('dialog[open]')&&t-evolutionAt>=180){const p=buildPattern(state.segments.length-1);p.grid=core.step(p.grid,W,H);p.next=new Uint8Array(p.grid);p.generations++;evolutionTicks++;evolutionAt=t;dirty=true;if(evolutionTicks>=18){evolving=false;persist();if(finishAfterEvolution){finishAfterEvolution=false;result();}}update();}
       if(state.stage==='approach'){split=ease(Math.min(1,(t-transitionStart)/(reduced.matches?1:1300)));if(split>=1){dispatch('APPROACH_DONE');if(!state.effectiveAngle&&!reduced.matches)guideStart=t;dial.focus({preventScroll:true});}}
       if(guideStart){const p=Math.min(1,(t-guideStart)/1000);crank.rotation.x=-state.wheelAngle-.2*Math.sin(p*Math.PI);if(p===1)guideStart=0;}
-      api.art?.update(state.wheelAngle);
+      if(!renderNeeded&&!dirty&&!guideStart&&state.stage!=='approach'){raf=requestAnimationFrame(draw);return;}
+      api.art?.update(state.wheelAngle);renderNeeded=false;
       if(dirty)paint();renderer.setScissorTest(false);renderer.setViewport(0,0,host.clientWidth,host.clientHeight);renderer.clear();
       if(state.stage==='landing'||split<1)renderer.render(scene,camera);
       if(state.stage!=='landing'){
