@@ -1,8 +1,8 @@
-.thread-opening{--art-width:min(100vw,179.166667svh);display:grid;grid-template-columns:1fr;place-items:center;background:linear-gradient(90deg,#200b06 0 calc(50% - var(--art-width)*.1),#f5f5f0 calc(50% - var(--art-width)*.1) 100%);padding:0;opacity:1;position:fixed;inset:0;z-index:10000;overflow:hidden}
-.opening-poster{position:relative;width:var(--art-width);max-width:none;aspect-ratio:1376/768;overflow:visible;background:none}
-.opening-artwork{display:block;width:100%;height:auto;aspect-ratio:1376/768;object-fit:contain}
+.thread-opening{--art-width:min(100vw,235.741738svh);display:grid;grid-template-columns:1fr;place-items:center;background:linear-gradient(90deg,#200b06 0 calc(50% - var(--art-width)*.0831),#f5f5f0 calc(50% - var(--art-width)*.0831) 100%);padding:0;opacity:1;position:fixed;inset:0;z-index:10000;overflow:hidden}
+.opening-poster{position:relative;width:var(--art-width);max-width:none;aspect-ratio:1926/817;overflow:visible;background:none}
+.opening-artwork{display:block;width:100%;height:auto;aspect-ratio:1926/817;object-fit:contain}
 /* Invisible semantic button aligned exactly with the button printed in the artwork. */
-.thread-opening .poster-enter{position:absolute;left:3.92%;top:83.46%;width:15.18%;height:10.03%;right:auto;bottom:auto;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;cursor:pointer;transform:none}
+.thread-opening .poster-enter{position:absolute;left:3.43%;top:83.35%;width:11.94%;height:10.16%;right:auto;bottom:auto;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;cursor:pointer;transform:none}
 .poster-enter span{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .thread-opening .poster-enter:focus-visible{outline:2px solid #ffe943;outline-offset:5px}
 .thread-opening .poster-enter:hover{background:#ffe94312}
