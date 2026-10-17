@@ -62,3 +62,13 @@
 #projects .visual-installation img{object-fit:cover;border-radius:2px}
 @media(max-width:760px){#projects .project-visual,#projects .project-row:nth-child(odd) .project-visual{height:390px;min-height:0;padding:26px}#projects .visual-1{padding-bottom:0}#projects .visual-3{height:290px}#projects .academic-mosaic{height:100%;width:auto;max-width:100%}#projects .project-visual img{width:100%;max-height:100%}.multimedia-index #projects{padding:125px 18px 40px}}
 @media(prefers-reduced-motion:reduce){.case-frame{transform:none;transition:none}}
+/* Same pink / cyan / yellow / violet control colours as the homepage letters. */
+.case-frame{border-color:transparent;border-image:linear-gradient(110deg,#ff5e9d,#56dfe5 40%,#a77bff 70%,#f4cf55) 1}
+.case-frame b{background:#090909;border-color:var(--handle-color,#56dfe5)}
+.case-frame b:nth-child(1),.case-frame b:nth-child(4){--handle-color:#ff5e9d}
+.case-frame b:nth-child(2),.case-frame b:nth-child(3){--handle-color:#56dfe5}
+.case-frame b:nth-child(5),.case-frame b:nth-child(8){--handle-color:#a77bff}
+.case-frame b:nth-child(6),.case-frame b:nth-child(7){--handle-color:#f4cf55}
+.case-frame em,.case-frame small{background:#111;color:#e9e9ee;border:1px solid transparent;border-image:linear-gradient(110deg,#ff5e9d,#56dfe5,#f4cf55,#a77bff) 1}
+@media(hover:hover){#projects .case-link:hover{background:#ffffff09}}
+#projects a:focus-visible{outline-color:#56dfe5}
