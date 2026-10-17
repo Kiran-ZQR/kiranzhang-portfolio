@@ -48,7 +48,7 @@ function hide(s){
 function clearIntro(){introTimers.forEach(clearTimeout);introTimers=[];inIntro=false;states.forEach(s=>{s.el.classList.remove('pending');hide(s)});}
 function returnLater(s,ms){clearTimeout(s.timer);s.timer=setTimeout(()=>{if(hovered!==s.index)hide(s)},ms)}
 function springFrames(angle,y){return Array.from({length:41},(_,i)=>{const t=i/40;const value=i===40?1:1-Math.exp(-7.2*t)*(Math.cos(10.5*t)+.24*Math.sin(10.5*t));return {offset:t,transform:`translateY(${y+8*(1-value)}px) rotate(${angle-8*(1-value)}deg) scale(${.35+.65*value})`}})}
-function show(s,{intro=false,automatic=false}={}){if(!s.loaded.length)return;if(!intro&&inIntro)clearIntro();clearTimeout(s.timer);
+function show(s,{intro=false,automatic=false}={}){if(!s.loaded.length)return;if(!intro&&!automatic&&!s.pendingLoad&&s.loaded.length<ASSETS[s.index].length){s.pendingLoad=true;load(s,ASSETS[s.index][s.loaded.length]).finally(()=>s.pendingLoad=false);}if(!intro&&inIntro)clearIntro();clearTimeout(s.timer);
  const pool=s.loaded.filter(a=>a!==s.last),items=pool.length?pool:s.loaded;const src=items[Math.floor(Math.random()*items.length)];s.last=src;s.active=true;s.el.classList.remove('pending','returning');s.el.classList.add('active');s.el.querySelector('.sticker')?.remove();
  const sticker=document.createElement('span');sticker.className='sticker';const image=document.createElement('img');image.src=src;image.alt='';image.draggable=false;sticker.append(image);s.el.append(sticker);
  const dot=s.ch==='.';s.el.style.setProperty('--height',dot?'.2125em':(['o','w'].includes(s.ch)?'1.18em':'1.08em'));s.el.style.setProperty('--maxwidth',dot?'.2125em':'1.377em');s.el.style.setProperty('--offset',dot?'.3em':'0em');const fontSize=parseFloat(getComputedStyle(words).fontSize);
@@ -83,7 +83,7 @@ async function load(s,name){const src=`assets/${name}`;const im=new Image();im.s
  const dotScale=s.ch==='.'?.25/1.62:1;s.padding.set(src,Math.max(.12,width/1.62*.28)*dotScale*.85*.85);
  }catch{}}
 // Show the first ten letters without waiting for every hover variant to download.
-Promise.all(states.map((s,i)=>load(s,ASSETS[i][0]))).then(()=>{ready=true;if(replay)replay.disabled=false;if(pause)pause.disabled=false;start();const queue=states.flatMap((s,i)=>ASSETS[i].slice(1).map(name=>()=>load(s,name)));async function worker(){while(queue.length){await queue.shift()();await new Promise(resolve=>setTimeout(resolve,40));}}setTimeout(()=>{worker();worker();},1200);});
+Promise.all(states.map((s,i)=>load(s,ASSETS[i][0]))).then(()=>{ready=true;if(replay)replay.disabled=false;if(pause)pause.disabled=false;start();});
 const videoInput=document.querySelector('#video-file'),backgroundVideo=document.querySelector('#background-video'),removeVideo=document.querySelector('#remove-video');
 let videoURL=null;
 document.querySelector('#upload-video')?.addEventListener('click',()=>videoInput?.click());
@@ -126,6 +126,7 @@ function updateScrollScene(){
   section.querySelectorAll('[data-parallax]').forEach(card=>{if(card.classList.contains('is-visible'))card.style.translate=`0 ${progress*viewport*Number(card.dataset.parallax)}px`});
  });
  document.querySelectorAll('.project-card').forEach((card,index)=>{
+  if(card.classList.contains('editorial-project'))return;
   const rect=card.getBoundingClientRect();
   const cardProgress=Math.max(-1,Math.min(1,(viewport*.5-(rect.top+rect.height*.5))/(viewport*.82)));
   const direction=index%2===0?1:-1;

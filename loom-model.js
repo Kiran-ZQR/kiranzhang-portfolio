@@ -4,7 +4,7 @@
   const $=s=>document.querySelector(s), host=$('#viewport'), fallback=$('#fallback');
   if(!window.THREE){fallback.textContent='3D 渲染库未能加载，请刷新页面。';return;}
   const T=window.THREE;let renderer;
-  try{renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true});}catch{fallback.textContent='当前浏览器无法启用 WebGL，请换用支持硬件加速的浏览器查看模型。';return;}
+  try{renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:false});}catch{fallback.textContent='当前浏览器无法启用 WebGL，请换用支持硬件加速的浏览器查看模型。';return;}
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.5));renderer.shadowMap.enabled=true;renderer.shadowMap.type=T.PCFSoftShadowMap;renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.28;host.append(renderer.domElement);
   const scene=new T.Scene(),model=new T.Group();model.name='Reference hand loom';scene.add(model);
   const camera=new T.PerspectiveCamera(36,1,.05,40), target=new T.Vector3(0,1.12,0);
