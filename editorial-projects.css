@@ -72,3 +72,5 @@
 .case-frame em,.case-frame small{background:#111;color:#e9e9ee;border:1px solid transparent;border-image:linear-gradient(110deg,#ff5e9d,#56dfe5,#f4cf55,#a77bff) 1}
 @media(hover:hover){#projects .case-link:hover{background:#ffffff09}}
 #projects a:focus-visible{outline-color:#56dfe5}
+#projects .visual-1{padding:36px!important;place-items:center!important}
+#projects .visual-1 img{width:auto!important;height:auto!important;max-width:82%!important;max-height:100%!important;object-fit:contain!important;object-position:center!important;transform:none!important}

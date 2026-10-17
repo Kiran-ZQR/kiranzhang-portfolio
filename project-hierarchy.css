@@ -1,0 +1,32 @@
+@font-face{font-family:Instrument;src:url(assets/fonts/instrument-sans-latin.woff2) format("woff2");font-weight:400 700;font-display:swap}
+/* Flat, opaque controls match Home. No glass, highlights, or extra shell. */
+body .unified-navigation .primary-island,body .unified-navigation .primary-island:hover,body .unified-navigation .primary-island:focus-within,body .unified-navigation .primary-island.is-open,body .unified-navigation .detail-nav-shell>.case-switcher{background:#050506!important;border:1px solid #303033!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+body .unified-navigation .case-tab.is-active,body .unified-navigation .case-tab:hover,body .unified-navigation .case-nav a:hover{background:#29292b!important;color:#fff!important;box-shadow:none!important}
+body .unified-navigation .case-tab,body .unified-navigation .case-nav a{color:#d3d2cf!important}
+body .unified-navigation .primary-island.is-open .case-nav{background:#050506!important;box-shadow:none!important;backdrop-filter:none!important}
+body .unified-navigation .island-orb img{filter:none!important}
+body.category-index-page .unified-navigation{width:min(700px,calc(100vw - 40px))!important}
+body.category-index-page .detail-nav-shell{grid-template-columns:minmax(0,1fr)!important}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+.grid-cover.cover-first img{object-fit:cover;object-position:center top}
+body.single-project{margin:0;background:#000;color:#eee;font-family:Instrument,Arial,"Microsoft YaHei",sans-serif}
+body.project-detail-page .academic-hero,body.project-detail-page .aigc-hero,body.project-detail-page .academic-header,body.project-detail-page .work-heading,body.project-detail-page .sent-intro,body.project-detail-page .aigc-description,body.project-detail-page .case-hero-live,body.project-detail-page .work-two-hero{display:none!important}
+body.project-detail-page .growth-detail>h1,body.project-detail-page .growth-detail>p,body.project-detail-page .growth-detail>a:not(.project-back){display:none}
+body.project-detail-page main{padding-top:128px!important}
+body.project-detail-page .single-project-content{max-width:1440px;margin:auto;padding:128px 28px 50px}
+body.project-detail-page .works{padding:0!important;margin:0!important;max-width:none!important}
+body.project-detail-page .work-card{opacity:1!important;transform:none!important;padding-top:0!important;margin-top:0!important}
+body.project-detail-page .work-board-list{margin-top:0!important;padding-top:0!important}
+body.project-detail-page .single-project-content .explore-frame{margin:0 0 20px}
+body.project-detail-page .single-project-content .explore-frame img{display:block;width:100%;height:auto}
+.project-back{display:block;width:fit-content;margin:0 0 30px;padding:10px 0;color:inherit;text-decoration:none;font:400 13px/1.4 Instrument,Arial,"Microsoft YaHei",sans-serif;letter-spacing:.02em;border-bottom:1px solid #ffffff35}
+.project-back:hover,.project-back:focus-visible{color:#56dfe5}
+body .project-sequence{padding:32px 0;margin:40px 0 0;background:none;border-top:1px solid #ffffff26}
+body .sequence-link{position:relative;display:grid;grid-template-columns:auto 1fr auto;gap:22px;align-items:center;max-width:680px;min-height:64px;padding:16px 20px;border:1px solid #ffffff35;border-radius:0;background:transparent;color:inherit;text-decoration:none;font:500 16px/1.4 Instrument,Arial,"Microsoft YaHei",sans-serif}
+.sequence-label{font:400 10px/1.4 monospace;letter-spacing:.08em;color:#999}.sequence-link i{font-style:normal}
+.sequence-link::after{content:"";position:absolute;inset:-1px;pointer-events:none;opacity:0;border:1px solid transparent;border-image:linear-gradient(110deg,#ff5e9d,#56dfe5,#a77bff,#f4cf55) 1;background:linear-gradient(#ff5e9d,#ff5e9d) left top/6px 6px no-repeat,linear-gradient(#56dfe5,#56dfe5) right top/6px 6px no-repeat,linear-gradient(#f4cf55,#f4cf55) left bottom/6px 6px no-repeat,linear-gradient(#a77bff,#a77bff) right bottom/6px 6px no-repeat;transition:opacity .2s}
+.sequence-link:hover::after,.sequence-link:focus-visible::after{opacity:1}
+body.light-project .project-back,body.light-project .project-sequence,body.light-project .sequence-link{border-color:#0003}
+body .weave-back{display:none}
+@media(max-width:600px){body.category-index-page .unified-navigation{width:calc(100vw - 24px)!important}body.project-detail-page main,body.project-detail-page .single-project-content{padding-top:92px!important}body.project-detail-page .single-project-content{padding-inline:16px}body .sequence-link{gap:12px;font-size:14px;grid-template-columns:1fr auto}.sequence-label{grid-column:1/-1}.project-back{font-size:12px;margin-bottom:20px}}
+@media(prefers-reduced-motion:reduce){.sequence-link::after{transition:none}}
