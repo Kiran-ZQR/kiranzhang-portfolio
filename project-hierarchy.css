@@ -39,3 +39,13 @@ body.project-detail-page .unified-navigation .case-switcher{overflow-x:auto;scro
 body.project-detail-page .unified-navigation .case-switcher::-webkit-scrollbar{display:none}
 body.project-detail-page .unified-navigation:has(.is-open) .case-switcher{grid-template-columns:repeat(var(--tab-count),minmax(90px,1fr))!important}
 @media(max-width:900px){body.project-detail-page .unified-navigation .case-switcher{grid-template-columns:repeat(var(--tab-count),minmax(96px,1fr))!important}body.project-detail-page .unified-navigation .case-tab{white-space:nowrap!important}}
+/* Explicitly override the old high-specificity inset highlight on selected tabs. */
+body .unified-navigation .detail-nav-shell>.case-switcher .case-tab,
+body .unified-navigation .primary-island .case-nav a{box-shadow:none!important;background-image:none!important;text-shadow:none!important;filter:none!important}
+body .unified-navigation .case-tab::after,body .unified-navigation .case-nav a::after{box-shadow:none!important;background-image:none!important}
+body .project-sequence{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding-bottom:100px}
+body .project-sequence .sequence-link{max-width:none}
+body .project-back.sequence-link{position:fixed;right:max(20px,env(safe-area-inset-right));bottom:max(20px,env(safe-area-inset-bottom));z-index:90;width:auto;max-width:calc(100vw - 32px);min-height:48px;margin:0;padding:12px 16px;background:#050506;color:#eee;border:1px solid #ffffff35;grid-template-columns:auto auto auto;gap:14px}
+body .project-back.sequence-link:hover{color:#fff}
+body .project-back.weave-back{display:grid}
+@media(max-width:600px){body .project-sequence{grid-template-columns:1fr}body .project-back.sequence-link{right:16px;bottom:max(16px,env(safe-area-inset-bottom));font-size:12px}body .project-back .sequence-label{display:none}}
