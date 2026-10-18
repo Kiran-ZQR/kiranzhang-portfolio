@@ -49,3 +49,16 @@ body .project-back.sequence-link{position:fixed;right:max(20px,env(safe-area-ins
 body .project-back.sequence-link:hover{color:#fff}
 body .project-back.weave-back{display:grid}
 @media(max-width:600px){body .project-sequence{grid-template-columns:1fr}body .project-back.sequence-link{right:16px;bottom:max(16px,env(safe-area-inset-bottom));font-size:12px}body .project-back .sequence-label{display:none}}
+/* Light pages keep the same flat geometry, without inheriting dark surfaces. */
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))){--project-control-surface:#fff;--project-control-edge:#d9dce3;--project-control-ink:#24262c;--project-control-muted:#626771;--project-control-active:#e8eaf0}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .primary-island,
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .detail-nav-shell>.case-switcher,
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .primary-island.is-open .case-nav{background:var(--project-control-surface)!important;border-color:var(--project-control-edge)!important;box-shadow:none!important}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .detail-nav-shell>.case-switcher .case-tab,
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .primary-island .case-nav a{color:var(--project-control-muted)!important;background:transparent!important}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .detail-nav-shell>.case-switcher .case-tab:is(.is-active,:hover,:focus-visible),
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-navigation .primary-island .case-nav a:is(.is-active,:hover,:focus-visible){background:var(--project-control-active)!important;color:var(--project-control-ink)!important;box-shadow:none!important}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .project-back.sequence-link{background:var(--project-control-surface);color:var(--project-control-ink);border-color:var(--project-control-edge)}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .project-sequence{border-color:var(--project-control-edge)}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .project-sequence .sequence-link{color:var(--project-control-ink);border-color:var(--project-control-edge)}
+body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .sequence-label{color:var(--project-control-muted)}
