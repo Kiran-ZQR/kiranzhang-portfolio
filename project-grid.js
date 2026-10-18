@@ -1,7 +1,8 @@
 (()=>{
  const reduced=matchMedia('(prefers-reduced-motion:reduce)');
  const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('is-pending');observer.unobserve(e.target)}}),{threshold:.08});
- if(!reduced.matches)document.querySelectorAll('.grid-card').forEach(card=>{card.classList.add('is-pending');observer.observe(card)});
+ // Above-the-fold covers are visible immediately; animate only later rows.
+ if(!reduced.matches)document.querySelectorAll('.grid-card').forEach(card=>{if(card.getBoundingClientRect().top>=innerHeight){card.classList.add('is-pending');observer.observe(card)}});
  const tabs=[...document.querySelectorAll('[data-grid-tab]')],panels=[...document.querySelectorAll('[data-grid-panel]')];
  if(!tabs.length)return;
  function select(id){if(!panels.some(p=>p.dataset.gridPanel===id))id=panels[0].dataset.gridPanel;

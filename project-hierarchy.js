@@ -12,6 +12,10 @@
  group.items.forEach(([name,href],i)=>{const a=document.createElement('a');a.className='case-tab'+(i===index?' is-active':'');a.href=href;a.textContent=name;if(i===index)a.setAttribute('aria-current','page');switcher.append(a)});switcher.style.setProperty('--tab-count',group.items.length);}
  document.querySelectorAll('.project-next,.academic-footer,.case-footer,.collection-back,.work-two-back').forEach(el=>el.remove());
  const main=document.querySelector('main');const back=document.createElement('a');back.className='project-back';back.href=group.list;back.textContent='← 返回项目列表';main?.prepend(back);
+ // Supplementary boards must precede the final navigation, not sit below it.
+ document.querySelectorAll('body>.project-original-boards').forEach(board=>main?.append(board));
+ // Keep the current project reachable in the scrollable mobile navigation.
+ switcher?.querySelector('[aria-current="page"]')?.scrollIntoView({block:'nearest',inline:'nearest'});
  const next=group.items[index+1];const footer=document.createElement('footer');footer.className='project-sequence';
  const link=document.createElement('a');link.className='sequence-link';link.href=next?next[1]:group.list;
  link.innerHTML='<span class="sequence-label">'+(next?'NEXT PROJECT':'ALL PROJECTS')+'</span><span>'+(next?next[0]:'返回项目列表')+'</span><i aria-hidden="true">↗</i>';

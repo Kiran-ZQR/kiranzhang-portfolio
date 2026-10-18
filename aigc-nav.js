@@ -1,7 +1,7 @@
 (() => {
  const header=document.createElement('header');header.className='multimedia-navigation nav-dark aigc-navigation';
  const items=[['cinema','The Fortress'],['forest','The Rococo'],['worlds','角色场景'],['experiments','视觉实验']];
- header.innerHTML=`<div class="detail-nav-shell"><div class="primary-island"><button class="island-orb" type="button" aria-label="展开网站导航" aria-expanded="false"><img src="assets/project-detail/portfolio-orb.jpg" alt=""></button><nav class="case-nav" aria-label="Primary navigation"><a href="index.html#home">Home</a><a href="index.html#projects">Projects</a><a href="index.html#about">About</a></nav></div><nav class="case-switcher" aria-label="AIGC projects">${items.map(([id,label],i)=>`<a class="case-tab" data-index="0${i+1}" href="#${id}">${label}</a>`).join('')}</nav></div>`;
+ header.innerHTML=`<div class="detail-nav-shell"><div class="primary-island"><button class="island-orb" type="button" aria-label="展开网站导航" aria-expanded="false"><img src="assets/index-previews/orb.webp" alt=""></button><nav class="case-nav" aria-label="Primary navigation"><a href="index.html#home">Home</a><a href="index.html#projects">Projects</a><a href="index.html#about">About</a></nav></div><nav class="case-switcher" aria-label="AIGC projects">${items.map(([id,label],i)=>`<a class="case-tab" data-index="0${i+1}" href="#${id}">${label}</a>`).join('')}</nav></div>`;
  document.body.prepend(header);const island=header.querySelector('.primary-island'),button=header.querySelector('button');
  const close=()=>{island.classList.remove('is-open');button.setAttribute('aria-expanded','false')};
  button.onclick=()=>{const open=island.classList.toggle('is-open');button.setAttribute('aria-expanded',String(open))};

@@ -30,3 +30,12 @@ body.light-project .project-back,body.light-project .project-sequence,body.light
 body .weave-back{display:none}
 @media(max-width:600px){body.category-index-page .unified-navigation{width:calc(100vw - 24px)!important}body.project-detail-page main,body.project-detail-page .single-project-content{padding-top:92px!important}body.project-detail-page .single-project-content{padding-inline:16px}body .sequence-link{gap:12px;font-size:14px;grid-template-columns:1fr auto}.sequence-label{grid-column:1/-1}.project-back{font-size:12px;margin-bottom:20px}}
 @media(prefers-reduced-motion:reduce){.sequence-link::after{transition:none}}
+/* Compact rectilinear navigation, including the supplementary project boards. */
+body .sequence-link{max-width:520px;min-height:52px;padding:12px 16px;font-size:14px}
+body .project-sequence{margin-top:28px;padding:24px 0}
+body .unified-navigation .primary-island.is-open .case-nav{-webkit-backdrop-filter:none!important}
+body.project-detail-page .unified-navigation:has(.is-open) .case-switcher,
+body.project-detail-page .unified-navigation .case-switcher{overflow-x:auto;scrollbar-width:none}
+body.project-detail-page .unified-navigation .case-switcher::-webkit-scrollbar{display:none}
+body.project-detail-page .unified-navigation:has(.is-open) .case-switcher{grid-template-columns:repeat(var(--tab-count),minmax(90px,1fr))!important}
+@media(max-width:900px){body.project-detail-page .unified-navigation .case-switcher{grid-template-columns:repeat(var(--tab-count),minmax(96px,1fr))!important}body.project-detail-page .unified-navigation .case-tab{white-space:nowrap!important}}

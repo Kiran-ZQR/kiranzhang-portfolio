@@ -7,7 +7,7 @@
   const links=[...old.querySelectorAll('a')].map(a=>({href:a.getAttribute('href'),label:a.textContent,current:a.hasAttribute('aria-current')}));
   header=document.createElement('header');header.className='multimedia-navigation nav-dark';
   if(old.classList.contains('light'))header.classList.remove('nav-dark');
-  header.innerHTML='<div class="detail-nav-shell"><div class="primary-island"><button class="island-orb"><img src="assets/project-detail/portfolio-orb.jpg" alt=""></button><nav class="case-nav" aria-label="Primary navigation"></nav></div><nav class="case-switcher" aria-label="Page navigation"></nav></div>';
+  header.innerHTML='<div class="detail-nav-shell"><div class="primary-island"><button class="island-orb"><img src="assets/index-previews/orb.webp" alt=""></button><nav class="case-nav" aria-label="Primary navigation"></nav></div><nav class="case-switcher" aria-label="Page navigation"></nav></div>';
   const switcher=header.querySelector('.case-switcher');
   links.forEach(({href,label,current})=>{const a=document.createElement('a');a.className='case-tab';a.href=label==='Resume'?'resume.html':href;a.textContent=label;if(current){a.classList.add('is-active');a.setAttribute('aria-current','page')}switcher.append(a)});
   old.replaceWith(header);
