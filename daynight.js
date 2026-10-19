@@ -17,6 +17,9 @@
  function syncMode(){
   main.dataset.mode=mode;dialog.dataset.mode=mode;
   switches.forEach(button=>button.setAttribute('aria-checked',String(mode==='dark')));
+  document.querySelectorAll('.dn-island-label').forEach(label=>label.textContent=mode==='light'?'切换夜间':'切换日间');
+  document.querySelectorAll('.dn-island-icon').forEach(label=>label.textContent=mode==='light'?'☼':'☾');
+  document.querySelectorAll('.dn-mode-label').forEach(label=>label.textContent=mode==='light'?'日间模式':'夜间模式');
   document.querySelectorAll('[data-image-mode]').forEach(img=>img.setAttribute('aria-hidden',String(img.dataset.imageMode!==mode)));
  }
  switches.forEach(button=>button.addEventListener('click',async()=>{
@@ -26,9 +29,15 @@
   finally{busy=false;switches.forEach(b=>b.disabled=false);}
  }));
  function renderOptions(){
-  const options=document.querySelector('#scene-options');options.replaceChildren();
+  const options=document.querySelector('#scene-options');
   document.querySelectorAll('[data-category]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.category===category)));
-  for(const scene of scenes.filter(s=>s.category===category)){
+  const filtered=scenes.filter(s=>s.category===category);
+  // Keep the same buttons for in-category selections so focus and pill transitions persist.
+  if(options.dataset.renderedCategory===category){
+   options.querySelectorAll('[data-scene]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.scene===current?.id)));return;
+  }
+  options.dataset.renderedCategory=category;options.replaceChildren();
+  for(const scene of filtered){
    const button=document.createElement('button');button.type='button';button.textContent=scene.label;button.dataset.scene=scene.id;button.setAttribute('aria-pressed',String(scene.id===current?.id));button.addEventListener('click',()=>selectScene(scene.id));options.append(button);
   }
  }
@@ -37,7 +46,10 @@
   const ticket=++request,screen=makeScreen(scene);document.querySelector('#library-preview').setAttribute('aria-busy','true');
   try{
    await ready(screen);if(ticket!==request)return;
+   const previousFocus=document.activeElement?.dataset.scene;
    current=scene;category=scene.category;document.querySelector('#library-preview').replaceChildren(screen);document.querySelector('#scene-label').textContent=scene.label;renderOptions();syncMode();document.querySelector('#open-detail').disabled=false;
+   if(previousFocus)document.querySelector('[data-scene="'+scene.id+'"]')?.focus({preventScroll:true});
+   if(!matchMedia('(prefers-reduced-motion: reduce)').matches)screen.querySelector('.dn-image-pair').animate([{opacity:.35,transform:'translateY(6px)'},{opacity:1,transform:'translateY(0)'}],{duration:450,easing:'cubic-bezier(.22,1,.36,1)'});
   }catch{if(ticket===request)announce('该页面图片加载失败，请重新选择或刷新页面。');}
   finally{if(ticket===request)document.querySelector('#library-preview').removeAttribute('aria-busy');}
  }
@@ -54,11 +66,16 @@
   try{
    const response=await fetch('assets/daynight/scenes.json');if(!response.ok)throw Error('manifest');scenes=await response.json();
    const showcase=document.querySelector('#showcase');showcase.replaceChildren();
-   ['article','video','morning'].forEach((id,i)=>{const scene=scenes.find(s=>s.id===id),figure=document.createElement('figure');figure.className='dn-device';figure.append(makeScreen(scene,true));const caption=document.createElement('figcaption');const label=document.createElement('b');label.style.fontWeight='400';label.textContent=['图文阅读','视频内容','早报资讯'][i];const number=document.createElement('span');number.textContent='0'+(i+1)+' / 03';caption.append(label,number);figure.append(caption);showcase.append(figure);});
+   showcase.append(makeScreen(scenes.find(s=>s.id==='article')));
    renderOptions();await ready(showcase);switches.forEach(b=>b.disabled=false);
    // The library's full-resolution pair is fetched only when it approaches the viewport.
    const observer=new IntersectionObserver(entries=>{if(entries.some(e=>e.isIntersecting)){if(!current&&request===0)selectScene('article');observer.disconnect();}},{rootMargin:'350px'});observer.observe(document.querySelector('#scene-library'));
   }catch{announce('演示素材暂时无法加载，请刷新重试。');document.querySelector('.dn-loading')?.remove();}
+ }
+ // Reveal editorial content once, without hiding it when motion is reduced.
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  const reveal=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');reveal.unobserve(entry.target);}}),{threshold:.08});
+  document.querySelectorAll('.dn-intro>div,.dn-section-heading,.dn-contributions article,.dn-detail,.dn-disclosure,.dn-closing').forEach((el,i)=>{el.classList.add('dn-reveal');el.style.setProperty('--reveal-delay',(i%3)*70+'ms');reveal.observe(el);});
  }
  init();
 })();
