@@ -5,7 +5,7 @@ const entryFiles=fs.readdirSync(root).filter(f=>/\.(html|css|js)$/.test(f));
 for(const file of entryFiles){
  files.add(file);
  const text=fs.readFileSync(path.join(root,file),'utf8');
- for(const m of text.matchAll(/assets\/[A-Za-z0-9_./% -]+\.(?:png|webp|jpg|jpeg|gif|svg|mp4|webm|woff2|pdf|js)/g)){
+ for(const m of text.matchAll(/assets\/[A-Za-z0-9_./% -]+\.(?:png|webp|jpg|jpeg|gif|svg|mp4|webm|woff2|pdf|json|js)\b/g)){
   const name=decodeURIComponent(m[0]);if(fs.existsSync(path.join(root,name)))files.add(name);else missing.add(name);
  }
  for(const m of text.matchAll(/(?:src|href)=["']([^"'#?]+)(?:[?#][^"']*)?["']/g)){
@@ -17,6 +17,8 @@ for(const file of entryFiles){
 const config={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'config.js'),'utf8'),config);
 function includeDirectory(relative){const full=path.join(root,relative);if(!fs.existsSync(full)){missing.add(relative);return}for(const entry of fs.readdirSync(full,{withFileTypes:true})){const next=relative+'/'+entry.name;if(entry.isDirectory())includeDirectory(next);else files.add(next)}}
 includeDirectory('assets/vendor/pdfjs');
+// Scene images are resolved at runtime from the paired-page manifest.
+includeDirectory('assets/daynight');
 for(const variants of config.window.LETTER_CONFIG.imagesByPosition)for(const name of variants)files.add('assets/'+name);
 let bytes=0;for(const file of files){const full=path.join(root,file);if(!fs.existsSync(full)){missing.add(file);continue}const size=fs.statSync(full).size;bytes+=size;if(size>100*1024*1024)missing.add('Git file exceeds 100 MiB: '+file)}
 const report={static:true,files:files.size,megabytes:Math.round(bytes/1e6),withinPagesSize:bytes<1e9,missing:[...missing]};

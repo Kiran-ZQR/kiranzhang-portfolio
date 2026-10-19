@@ -1,4 +1,9 @@
 @font-face{font-family:Instrument;src:url(assets/fonts/instrument-sans-latin.woff2) format("woff2");font-weight:400 700;font-display:swap}
+.grid-cover.dn-index-cover{background:#151319;isolation:isolate}
+.dn-index-pair{position:absolute;inset:12% 14% 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;overflow:hidden}
+.grid-cover .dn-index-pair img{width:100%;height:auto;object-fit:contain;object-position:top;align-self:start;transform:none!important;border:1px solid #ffffff24}
+.dn-index-label{position:absolute;inset:auto 0 0;padding:32px 24px 20px;background:linear-gradient(transparent,#111016 35%);color:#c7b5f2;font:11px/1.7 monospace;letter-spacing:.08em;z-index:1}
+.dn-index-label>span{display:block;font:500 clamp(13px,1.5vw,22px)/1.5 Instrument,Arial,sans-serif;letter-spacing:0;color:#eee;margin-top:7px}
 *{box-sizing:border-box}
 html{background:#000;color:#f1f1ee;scroll-behavior:smooth}
 body{margin:0;background:#000;font-family:Instrument,Arial,"Microsoft YaHei",sans-serif}
