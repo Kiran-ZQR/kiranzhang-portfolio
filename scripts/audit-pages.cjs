@@ -19,6 +19,7 @@ function includeDirectory(relative){const full=path.join(root,relative);if(!fs.e
 includeDirectory('assets/vendor/pdfjs');
 // Scene images are resolved at runtime from the paired-page manifest.
 includeDirectory('assets/daynight');
+includeDirectory('assets/comments');
 for(const variants of config.window.LETTER_CONFIG.imagesByPosition)for(const name of variants)files.add('assets/'+name);
 let bytes=0;for(const file of files){const full=path.join(root,file);if(!fs.existsSync(full)){missing.add(file);continue}const size=fs.statSync(full).size;bytes+=size;if(size>100*1024*1024)missing.add('Git file exceeds 100 MiB: '+file)}
 const report={static:true,files:files.size,megabytes:Math.round(bytes/1e6),withinPagesSize:bytes<1e9,missing:[...missing]};
