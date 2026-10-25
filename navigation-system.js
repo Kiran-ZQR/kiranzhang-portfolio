@@ -16,17 +16,20 @@
  header.classList.add('unified-navigation');document.body.classList.add('has-unified-nav');
  const island=header.querySelector('.primary-island'),nav=island.querySelector('.case-nav');
  nav.innerHTML=primary;
- const oldOrb=island.querySelector('.island-orb'),button=document.createElement('button');
- button.className='island-orb';button.type='button';button.innerHTML=oldOrb.innerHTML;button.setAttribute('aria-label','展开网站导航');oldOrb.replaceWith(button);
+ const directHome=['tencent-news.html','tencent-news-ai-tools.html','tencent-news-crop.html'].includes(location.pathname.split('/').pop());
+ const oldOrb=island.querySelector('.island-orb'),button=document.createElement(directHome?'a':'button');
+ button.className='island-orb';if(directHome){button.href='index.html#home';}else{button.type='button';}button.innerHTML=oldOrb.innerHTML;button.setAttribute('aria-label',directHome?'返回 Home 主页':'展开网站导航');oldOrb.replaceWith(button);
  nav.id='global-project-navigation';button.setAttribute('aria-controls',nav.id);
  header.querySelector('.case-switcher')?.style.setProperty('--tab-count',header.querySelectorAll('.case-switcher .case-tab').length);
  // Capture legacy toggles so all pages use one interaction state.
  const setOpen=open=>{island.classList.toggle('is-open',open);button.setAttribute('aria-expanded',String(open));nav.inert=!open;};
  setOpen(false);let pinned=false;
- button.addEventListener('click',e=>{e.stopImmediatePropagation();pinned=!pinned;setOpen(pinned)});
+ if(!directHome)button.addEventListener('click',e=>{e.stopImmediatePropagation();pinned=!pinned;setOpen(pinned)});
+ button.addEventListener('focus',()=>setOpen(true));
  island.addEventListener('pointerenter',e=>{if(e.pointerType==='mouse')setOpen(true)});
  island.addEventListener('pointerleave',()=>{if(!pinned&&!island.contains(document.activeElement))setOpen(false)});
  island.addEventListener('focusout',()=>requestAnimationFrame(()=>{if(!island.contains(document.activeElement)){pinned=false;setOpen(false)}}));
  header.addEventListener('keydown',e=>{if(e.key==='Escape'){pinned=false;setOpen(false);button.focus()}if(e.target===button&&e.key==='ArrowDown'){e.preventDefault();setOpen(true);nav.querySelector('a').focus()}});
  document.addEventListener('pointerdown',e=>{if(!island.contains(e.target)){pinned=false;setOpen(false)}});
 })();
+
