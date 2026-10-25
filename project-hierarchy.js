@@ -3,7 +3,7 @@
  const file=location.pathname.split('/').pop()||'index.html';
  const indexes=['tencent-news.html','academic-projects.html','multimedia-projects.html','aigc.html','resume.html'];
  const header=document.querySelector('.unified-navigation');
- if(indexes.includes(file)){document.body.classList.add('category-index-page');header?.querySelector('.primary-island')?.remove();return;}
+ if(indexes.includes(file)){document.body.classList.add('category-index-page');if(file==='tencent-news.html'){document.body.classList.add('category-with-home');}else{header?.querySelector('.primary-island')?.remove();}return;}
  const group=groups.find(g=>g.items.some(x=>x[1]===file));if(!group)return;
  document.body.classList.add('project-detail-page');
  const index=group.items.findIndex(x=>x[1]===file);
@@ -23,3 +23,4 @@
  footer.append(link);
  if(file==='life-weave.html'){document.querySelector('#completion .result-actions')?.append(footer);back?.classList.add('weave-back');}else{main?.append(footer);}
 })();
+
