@@ -91,3 +91,6 @@ body .unified-navigation.has-project-picker:has(.primary-island.is-open){width:m
 body .unified-navigation.has-project-picker .primary-island.is-open{width:356px!important;overflow:hidden!important}
 body .unified-navigation.has-project-picker .primary-island .case-nav{position:static!important;flex:0 0 274px!important;width:274px!important;height:calc(var(--site-nav-height) - 18px)!important;margin:0 5px!important;padding:0!important;border:0!important}
 @media(max-width:600px){body .unified-navigation.has-project-picker:has(.primary-island.is-open) .detail-nav-shell{grid-template-columns:minmax(0,1fr)!important}body .unified-navigation.has-project-picker .primary-island.is-open{width:100%!important}body .unified-navigation.has-project-picker .primary-island .case-nav{flex:1 1 auto!important;width:auto!important;min-width:0!important}body .unified-navigation.has-project-picker:has(.primary-island.is-open) .detail-nav-shell>.case-switcher{display:none!important}}
+
+/* Keep the hover target anchored while the capsule grows to the right. */
+@media(min-width:601px){body .unified-navigation.has-project-picker:has(.primary-island.is-open){width:min(744px,calc(50vw + 214px))!important;transform:translateX(-230px)!important}}
