@@ -4,40 +4,48 @@
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="theme-color" content="#080809">
   <title>插件评论互动 — Kiran Zhang</title>
-  <meta name="description" content="腾讯新闻微信插件增长迭代：补齐评论参与与消息回访体验，交互页面设计、绘制与上线交付。">
+  <meta name="description" content="腾讯新闻微信插件评论互动：围绕评论参与和消息回访，完成交互页面设计、绘制与上线交付。">
   <link rel="stylesheet" href="multimedia-nav.css"><link rel="stylesheet" href="project-glass.css?v=20261017-1">
-  <link rel="stylesheet" href="navigation-system.css?v=20261017-1"><link rel="stylesheet" href="project-hierarchy.css?v=20261018-4">
-  <link rel="stylesheet" href="comments.css?v=20261019-1">
-  <script src="navigation-system.js?v=20261017-1" defer></script><script src="project-hierarchy.js?v=20261020-1" defer></script><script src="comments.js?v=20261020-1" defer></script>
+  <link rel="stylesheet" href="navigation-system.css?v=20261024-1"><link rel="stylesheet" href="project-hierarchy.css?v=20261024-1">
+  <link rel="stylesheet" href="comments.css?v=20261026-1">
+  <script src="navigation-system.js?v=20261024-1" defer></script><script src="project-hierarchy.js?v=20261024-1" defer></script><script src="comments.js?v=20261026-1" defer></script>
 </head>
 <body class="comments-project">
   <header class="multimedia-navigation nav-dark"><div class="detail-nav-shell"><div class="primary-island"><button class="island-orb" type="button"><img src="assets/index-previews/orb.webp" width="1080" height="1080" alt=""></button><nav class="case-nav" aria-label="网站导航"></nav></div><nav class="case-switcher" aria-label="同类项目"></nav></div></header>
   <main class="cm-main">
-    <section class="cm-stage" aria-labelledby="demo-title">
-      <div class="cm-topline"><span>TENCENT NEWS / INTERACTION DESIGN</span><span>DELIVERED · LIVE</span></div>
-      <div class="cm-demo">
-        <aside class="cm-scenarios"><span class="cm-kicker">EXPLORE THE EXPERIENCE</span><h1 id="demo-title">从阅读，<br>到回应。</h1><p>微信插件 · 评论互动体验</p><div id="cm-scenarios" class="cm-pills" role="group" aria-label="选择体验场景"></div></aside>
-        <div class="cm-device-wrap"><div class="cm-device"><div id="cm-screen" class="cm-screen" tabindex="0" aria-label="交付页面预览，可上下滚动"><img id="cm-image" src="assets/comments/feed-450.webp" srcset="assets/comments/feed-450.webp 450w, assets/comments/feed-900.webp 900w" sizes="(max-width: 600px) 76vw, 310px" width="1125" height="2436" alt="沉浸流视频中的评论入口" fetchpriority="high"></div></div><div class="cm-device-tools"><span>原始交付稿 · 画面可滚动</span><button id="cm-enlarge" type="button">放大 ↗</button></div></div>
-        <aside class="cm-states"><span class="cm-kicker">SCREENS & STATES</span><div id="cm-steps" class="cm-pills" role="group" aria-label="选择页面状态"></div><div class="cm-state-note" aria-live="polite"><span id="cm-counter" class="cm-kicker"></span><h2 id="cm-state-title"></h2><p id="cm-caption"></p></div></aside>
+    <section class="cm-hero" aria-labelledby="cm-title">
+      <p class="cm-kicker">腾讯新闻 / 微信插件</p>
+      <h1 id="cm-title">微信插件 · 评论互动</h1>
+      <p class="cm-intro">补齐评论参与和消息回访，<br>让用户能表达，也能接着聊。</p>
+      <dl class="cm-meta"><div><dt>我的工作</dt><dd>交互页面设计与绘制</dd></div><div><dt>项目范围</dt><dd>图文与沉浸流</dd></div><div><dt>交付状态</dt><dd>已上线</dd></div></dl>
+      <p class="cm-context">在既有插件体验和设计规范下，完成评论相关页面及交互状态。这个项目围绕下面两个使用环节展开。</p>
+    </section>
+    <section id="participation" class="cm-feature" aria-labelledby="cm-participation-title">
+      <div class="cm-feature-copy"><p class="cm-kicker">01 / 参与评论</p><h2 id="cm-participation-title">从阅读内容，<br>到发表看法。</h2><p>分别为视频与图文承接评论，保留当前内容的上下文，并区分主评论与回复层级。</p><p>相关交付也包括登录提示、评论输入和发布反馈，放在下方补充状态中查看。</p><span class="cm-view-hint">点击页面可放大查看</span></div>
+      <div class="cm-screen-grid">
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/video-comments-900.webp" data-cm-title="视频评论区" aria-label="放大查看视频评论区"><img src="assets/comments/video-comments-450.webp" srcset="assets/comments/video-comments-450.webp 450w, assets/comments/video-comments-900.webp 900w" sizes="(max-width: 800px) 42vw, 240px" width="450" height="974" loading="lazy" decoding="async" alt="视频评论区交付稿"></button><figcaption><strong>视频评论区</strong><p>在观看界面展开评论，视频与讨论同屏呈现。</p></figcaption></figure>
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/article-comments-900.webp" data-cm-title="图文评论面板" aria-label="放大查看图文评论面板"><img src="assets/comments/article-comments-450.webp" srcset="assets/comments/article-comments-450.webp 450w, assets/comments/article-comments-900.webp 900w" sizes="(max-width: 800px) 42vw, 240px" width="450" height="974" loading="lazy" decoding="async" alt="图文评论面板交付稿"></button><figcaption><strong>图文评论面板</strong><p>从阅读进入讨论，保留原文背景和回复关系。</p></figcaption></figure>
       </div>
-      <p class="cm-disclosure">交互展示基于已交付页面制作。选择两侧胶囊查看场景与状态，不会实际登录、发送评论或打开其他应用。</p>
     </section>
-    <section class="cm-section cm-context">
-      <div class="cm-heading"><span class="cm-kicker">01 / CONTEXT</span><h2>让内容之外，<br>也有互动的空间。</h2></div>
-      <div><p class="cm-lead">插件生态仍在逐步完善。这次增长迭代，围绕评论参与与消息回访补齐功能，让阅读之外的互动也有对应的页面承接。</p><div class="cm-facts"><div><span>项目性质</span><strong>增长功能迭代</strong></div><div><span>我的参与</span><strong>交互页面设计与绘制</strong></div><div><span>交付状态</span><strong>最终上线</strong></div></div><p class="cm-muted">在既有插件体验与设计规范下，完成新增功能页面和交互状态的绘制。本页以交付稿展示评论参与、消息回访与边界状态。</p></div>
+    <section id="return-to-comments" class="cm-feature" aria-labelledby="cm-return-title">
+      <div class="cm-feature-copy"><p class="cm-kicker">02 / 消息回访</p><h2 id="cm-return-title">从收到回复，<br>到回到讨论。</h2><p>通过消息提示进入“我的消息”，查看回复内容和关联上下文，再定位到对应评论。</p><p class="cm-route" aria-label="消息回访路径"><span>消息提醒</span><i aria-hidden="true">→</i><span>我的消息</span><i aria-hidden="true">→</i><span>对应评论</span></p></div>
+      <div class="cm-screen-grid">
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/inbox-900.webp" data-cm-title="我的消息" aria-label="放大查看我的消息"><img src="assets/comments/inbox-450.webp" srcset="assets/comments/inbox-450.webp 450w, assets/comments/inbox-900.webp 900w" sizes="(max-width: 800px) 42vw, 240px" width="450" height="974" loading="lazy" decoding="async" alt="我的消息交付稿"></button><figcaption><strong>我的消息</strong><p>汇总回复内容，让用户知道谁回应了自己。</p></figcaption></figure>
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/locate-900.webp" data-cm-title="定位到对应评论" aria-label="放大查看定位到对应评论"><img src="assets/comments/locate-450.webp" srcset="assets/comments/locate-450.webp 450w, assets/comments/locate-900.webp 900w" sizes="(max-width: 800px) 42vw, 240px" width="450" height="974" loading="lazy" decoding="async" alt="定位到对应评论交付稿"></button><figcaption><strong>定位到对应评论</strong><p>回到关联评论的位置，衔接后续阅读与回复。</p></figcaption></figure>
+      </div>
     </section>
-    <section class="cm-section">
-      <div class="cm-heading"><span class="cm-kicker">02 / PARTICIPATION</span><h2>不只是一张评论区，<br>而是一组可以衔接的状态。</h2></div>
-      <div class="cm-cards"><article><span class="cm-kicker">01 — 阅读与讨论</span><h3>从不同内容，进入评论。</h3><p>图文与沉浸流有不同的阅读界面。分别呈现评论展开方式、回复层级与长列表，让讨论仍有清晰的内容上下文。</p><button type="button" data-scene-jump="reading">查看阅读场景 ↗</button></article><article><span class="cm-kicker">02 — 输入与反馈</span><h3>把参与过程补完整。</h3><p>展示未登录提示、输入键盘、@ 选择与选中状态，以及发布成功反馈。重点是动作之后出现什么，而不只展示静态成果。</p><button type="button" data-scene-jump="participation">查看参与状态 ↗</button></article></div>
-    </section>
-    <section class="cm-section">
-      <div class="cm-heading"><span class="cm-kicker">03 / RETURN TO CONVERSATION</span><h2>一次回应，<br>也需要被看见。</h2><p>从入口提示，到消息列表，再回到对应评论。</p></div>
-      <div class="cm-journey"><article><span>01 / NOTICE</span><h3>发现新消息</h3><p>图文头像入口与沉浸流菜单，通过红点提示消息状态。</p></article><article><span>02 / READ</span><h3>理解回复关系</h3><p>在“我的消息”中查看回复内容与关联上下文。</p></article><article><span>03 / RETURN</span><h3>回到讨论位置</h3><p>通过评论定位状态，衔接消息阅读与内容内的讨论。</p></article></div><button class="cm-inline" type="button" data-scene-jump="messages">在手机中查看消息回访 ↗</button>
-    </section>
-    <section class="cm-section cm-boundaries"><div class="cm-heading"><span class="cm-kicker">04 / EDGE STATES</span><h2>没有新消息时，<br>体验也不留白。</h2><p>已读历史、评论删除、空消息与外部应用确认，<br>共同构成完整交付中的边界状态。</p><button class="cm-inline" type="button" data-scene-jump="boundaries">查看边界状态 ↗</button></div><div class="cm-boundary-visual"><img src="assets/comments/empty-light-450.webp" width="1125" height="2436" loading="lazy" decoding="async" alt="日间模式的空消息页"><img src="assets/comments/empty-dark-450.webp" width="1125" height="2436" loading="lazy" decoding="async" alt="夜间模式的空消息页"></div></section>
-    <section class="cm-closing"><span class="cm-kicker">DESIGNED · DELIVERED · LIVE</span><h2>补齐功能，也补齐状态。</h2><p>插件内评论 × 沉浸流评论区功能优化</p></section>
-    <noscript><p>启用 JavaScript 可切换全部交付页面。<a href="assets/comments/video-comments-900.webp">查看评论区</a> · <a href="assets/comments/inbox-900.webp">查看消息页</a> · <a href="tencent-news.html#business">返回项目列表</a></p></noscript>
+    <details class="cm-supplement">
+      <summary><span><strong>补充交付状态</strong><small>输入、反馈与空状态</small></span><i aria-hidden="true">+</i></summary>
+      <div class="cm-supplement-content"><p>以下页面补齐参与和回访过程中的状态，点击可放大查看。</p><div class="cm-more-grid">
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/login-900.webp" data-cm-title="未登录提示" aria-label="放大查看未登录提示"><img src="assets/comments/login-450.webp" srcset="assets/comments/login-450.webp 450w, assets/comments/login-900.webp 900w" sizes="(max-width: 800px) 42vw, 190px" width="450" height="977" loading="lazy" decoding="async" alt="未登录提示交付稿"></button><figcaption><strong>未登录提示</strong></figcaption></figure>
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/compose-900.webp" data-cm-title="评论输入" aria-label="放大查看评论输入"><img src="assets/comments/compose-450.webp" srcset="assets/comments/compose-450.webp 450w, assets/comments/compose-900.webp 900w" sizes="(max-width: 800px) 42vw, 190px" width="450" height="974" loading="lazy" decoding="async" alt="评论输入交付稿"></button><figcaption><strong>评论输入</strong></figcaption></figure>
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/success-900.webp" data-cm-title="发布成功" aria-label="放大查看发布成功"><img src="assets/comments/success-450.webp" srcset="assets/comments/success-450.webp 450w, assets/comments/success-900.webp 900w" sizes="(max-width: 800px) 42vw, 190px" width="450" height="974" loading="lazy" decoding="async" alt="发布成功交付稿"></button><figcaption><strong>发布成功</strong></figcaption></figure>
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/deleted-900.webp" data-cm-title="评论已删除" aria-label="放大查看评论已删除"><img src="assets/comments/deleted-450.webp" srcset="assets/comments/deleted-450.webp 450w, assets/comments/deleted-900.webp 900w" sizes="(max-width: 800px) 42vw, 190px" width="450" height="974" loading="lazy" decoding="async" alt="评论已删除交付稿"></button><figcaption><strong>评论已删除</strong></figcaption></figure>
+        <figure><button class="cm-shot" type="button" data-cm-image="assets/comments/empty-light-900.webp" data-cm-title="暂无消息" aria-label="放大查看暂无消息"><img src="assets/comments/empty-light-450.webp" srcset="assets/comments/empty-light-450.webp 450w, assets/comments/empty-light-900.webp 900w" sizes="(max-width: 800px) 42vw, 190px" width="450" height="974" loading="lazy" decoding="async" alt="暂无消息交付稿"></button><figcaption><strong>暂无消息</strong></figcaption></figure>
+      </div></div>
+    </details>
   </main>
-  <dialog class="cm-dialog" aria-labelledby="cm-dialog-title"><div class="cm-dialog-bar"><h2 id="cm-dialog-title">交付页面</h2><button id="cm-close" type="button">关闭 ×</button></div><img id="cm-detail" alt=""></dialog>
+  <dialog id="cm-dialog" class="cm-dialog" aria-labelledby="cm-dialog-title"><div class="cm-dialog-bar"><h2 id="cm-dialog-title">交付页面</h2><button id="cm-close" type="button" autofocus>关闭 ×</button></div><img id="cm-detail" alt=""></dialog>
 </body>
 </html>
+
