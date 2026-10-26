@@ -10,6 +10,29 @@
  const switcher=header?.querySelector('.case-switcher');
  if(switcher){switcher.removeAttribute('role');switcher.setAttribute('aria-label','同类项目');switcher.replaceChildren();
  group.items.forEach(([name,href],i)=>{const a=document.createElement('a');a.className='case-tab'+(i===index?' is-active':'');a.href=href;a.textContent=name;if(i===index)a.setAttribute('aria-current','page');switcher.append(a)});switcher.style.setProperty('--tab-count',group.items.length);}
+ // Long project groups use a disclosure instead of compressing every title into one row.
+ if(switcher&&group.items.length>6){
+  header.classList.add('has-project-picker');
+  const panel=document.createElement('div');panel.className='project-picker-panel';panel.id='project-picker-panel';panel.hidden=true;
+  const heading=document.createElement('p');heading.className='project-picker-heading';heading.textContent='腾讯实习 / 商业业务';panel.append(heading);
+  const links=document.createElement('nav');links.className='project-picker-links';links.setAttribute('aria-label','腾讯实习商业项目');
+  [...switcher.children].forEach((a,i)=>{a.className='project-picker-link';const number=document.createElement('span');number.className='project-picker-number';number.textContent=String(i+1).padStart(2,'0');a.prepend(number);if(i===index){const mark=document.createElement('span');mark.className='project-picker-check';mark.textContent='✓';mark.setAttribute('aria-hidden','true');a.append(mark)}links.append(a)});
+  panel.append(links);const all=document.createElement('a');all.className='project-picker-all';all.href=group.list;all.textContent='查看全部商业项目 ↗';panel.append(all);
+  const toggle=document.createElement('button');toggle.type='button';toggle.className='project-picker-toggle';toggle.setAttribute('aria-controls',panel.id);toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','切换项目，当前：'+group.items[index][0]);
+  const count=document.createElement('span');count.className='project-picker-count';count.textContent=String(index+1).padStart(2,'0')+' / '+String(group.items.length).padStart(2,'0');
+  const title=document.createElement('span');title.className='project-picker-current';title.textContent=group.items[index][0];
+  const hint=document.createElement('span');hint.className='project-picker-hint';hint.textContent='切换';
+  const arrow=document.createElement('span');arrow.className='project-picker-arrow';arrow.textContent='⌄';arrow.setAttribute('aria-hidden','true');toggle.append(count,title,hint,arrow);switcher.replaceChildren(toggle);header.append(panel);
+  const setOpen=open=>{panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));header.classList.toggle('project-picker-open',open)};
+  toggle.addEventListener('click',()=>setOpen(panel.hidden));
+  toggle.addEventListener('keydown',event=>{if(event.key==='ArrowDown'){event.preventDefault();setOpen(true);links.querySelector('[aria-current="page"]').focus()}});
+  const escape=event=>{if(event.key==='Escape'&&!panel.hidden){event.preventDefault();event.stopPropagation();setOpen(false);toggle.focus()}};
+  panel.addEventListener('keydown',escape);toggle.addEventListener('keydown',escape);
+  document.addEventListener('pointerdown',event=>{if(!panel.contains(event.target)&&!switcher.contains(event.target))setOpen(false)});
+  header.querySelector('.primary-island')?.addEventListener('pointerenter',()=>setOpen(false));
+  header.addEventListener('focusout',()=>requestAnimationFrame(()=>{if(!panel.contains(document.activeElement)&&!switcher.contains(document.activeElement))setOpen(false)}));
+  links.addEventListener('click',event=>{if(event.target.closest('a'))setOpen(false)});
+ }
  document.querySelectorAll('.project-next,.project-sibling-nav,.academic-footer,.case-footer,.collection-back,.work-two-back').forEach(el=>el.remove());
  const main=document.querySelector('main');const back=document.createElement('a');back.className='project-back sequence-link';back.href=group.list;back.innerHTML='<span class="sequence-label">ALL PROJECTS</span><span>返回项目列表</span><i aria-hidden="true">↗</i>';document.body.append(back);
  // Supplementary boards must precede the final navigation, not sit below it.
