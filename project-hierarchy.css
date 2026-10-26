@@ -81,3 +81,9 @@ body:is(.light-project,:has(.multimedia-navigation:not(.nav-dark))) .unified-nav
 @media(max-width:600px){body .unified-navigation.has-project-picker{width:calc(100vw - 24px)!important}.project-picker-toggle{gap:10px;padding:0 12px;font-size:14px}.project-picker-count{font-size:10px}.project-picker-panel{padding:16px;border-radius:20px}.project-picker-link{gap:9px;padding:12px 10px;min-height:54px;font-size:13px}.project-picker-hint{font-size:10px}}
 @media(max-width:350px){.project-picker-hint{display:none}.project-picker-links{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.project-picker-panel{animation:none}.project-picker-toggle,.project-picker-arrow,.project-picker-link{transition:none}}
+
+/* Rounded optical chevron, independent of platform font glyphs. */
+.project-picker-arrow{display:grid;place-items:center;flex:0 0 20px;width:20px;height:20px;font-size:0;color:var(--picker-muted);transform:none;transition:transform .36s cubic-bezier(.22,1,.36,1),color .2s}
+.project-picker-arrow::before{content:"";width:18px;height:18px;background:currentColor;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='m5.5 7.75 4.5 4.5 4.5-4.5' fill='none' stroke='white' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.project-picker-toggle[aria-expanded="true"] .project-picker-arrow{transform:rotate(180deg);color:var(--picker-ink)}
+@media(prefers-reduced-motion:reduce){.project-picker-arrow{transition:none}}
