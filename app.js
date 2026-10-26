@@ -1,7 +1,15 @@
 /* Independent letter-image animation. MIT licensed. */
 const CONFIG=window.LETTER_CONFIG;
 const tokens=Array.from(CONFIG.text.trim());
-const ASSETS=tokens.filter(ch=>! /\s/.test(ch)).map((ch,i)=>CONFIG.imagesByPosition[i]||[]);
+const ASSETS=tokens.filter(ch=>! /\s/.test(ch)).map((ch,i)=>{
+ const variants=[...(CONFIG.imagesByPosition[i]||[])];
+ // Shuffle each position before loading, so the opening uses a fresh combination.
+ for(let j=variants.length-1;j>0;j--){
+  const k=Math.floor(Math.random()*(j+1));
+  [variants[j],variants[k]]=[variants[k],variants[j]];
+ }
+ return variants;
+});
 document.querySelector('h1').setAttribute('aria-label',CONFIG.text);
 if(CONFIG.exitDuration)document.documentElement.style.setProperty('--exit-duration',CONFIG.exitDuration+'ms');
 const words=document.querySelector('#words'),status=document.querySelector('#status'),replay=document.querySelector('#replay'),pause=document.querySelector('#pause');
@@ -82,7 +90,7 @@ if(typeof reduced.addEventListener==='function')reduced.addEventListener('change
 async function load(s,name){const src=`assets/${name}`;const im=new Image();im.src=src;try{await im.decode();s.loaded.push(src);s.imageWidths??=new Map();s.imageWidths.set(src,Math.min(('ow'.includes(s.ch)?1.18:1.08)*im.naturalWidth/im.naturalHeight,1.377));let width=Math.min(1.32*im.naturalWidth/im.naturalHeight,1.62);try{const canvas=document.createElement('canvas');const scale=Math.min(1,160/Math.max(im.naturalWidth,im.naturalHeight));canvas.width=Math.max(1,Math.round(im.naturalWidth*scale));canvas.height=Math.max(1,Math.round(im.naturalHeight*scale));const ctx=canvas.getContext('2d',{willReadFrequently:true});ctx.drawImage(im,0,0,canvas.width,canvas.height);const data=ctx.getImageData(0,0,canvas.width,canvas.height).data;let left=canvas.width,right=-1;for(let y=0;y<canvas.height;y++)for(let x=0;x<canvas.width;x++)if(data[(y*canvas.width+x)*4+3]>8){left=Math.min(left,x);right=Math.max(right,x)}if(right>=left)width=(right-left+1)/scale*Math.min(1.32/im.naturalHeight,1.62/im.naturalWidth)}catch{}
  const dotScale=s.ch==='.'?.25/1.62:1;s.padding.set(src,Math.max(.12,width/1.62*.28)*dotScale*.85*.85);
  }catch{}}
-// Show the first ten letters without waiting for every hover variant to download.
+// Load one shuffled variant per letter without waiting for the full hover pool.
 Promise.all(states.map((s,i)=>load(s,ASSETS[i][0]))).then(()=>{ready=true;if(replay)replay.disabled=false;if(pause)pause.disabled=false;start();});
 const videoInput=document.querySelector('#video-file'),backgroundVideo=document.querySelector('#background-video'),removeVideo=document.querySelector('#remove-video');
 let videoURL=null;
