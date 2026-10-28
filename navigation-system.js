@@ -1,5 +1,5 @@
 (()=>{
- const primary='<a href="index.html#home">Home</a><a href="index.html#projects">Projects</a><a href="index.html#about">About</a><a href="resume.html">Resume</a>';
+ const primary='<a href="index.html#home">Home</a><a href="index.html#projects">Projects</a><a href="about.html">About</a><a href="resume.html">Resume</a>';
  let header=document.querySelector('.case-header,.multimedia-navigation');
  if(!header){
   const old=document.querySelector('.category-nav,body>header');

@@ -123,7 +123,7 @@ if('IntersectionObserver' in window){
  const revealObserver=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');entry.target.querySelectorAll?.('.reveal-card').forEach(card=>card.classList.add('is-visible'));revealObserver.unobserve(entry.target)}}),{threshold:.16,rootMargin:'0px 0px -8%'});
  revealItems.forEach(item=>revealObserver.observe(item));
 }else revealItems.forEach(item=>{item.classList.add('is-visible');item.querySelectorAll?.('.reveal-card').forEach(card=>card.classList.add('is-visible'))});
-const navLinks=[...document.querySelectorAll('.nav-link:not(.resume-link)')];
+const navLinks=[...document.querySelectorAll('.nav-link:not(.resume-link)')].filter(link=>link.getAttribute('href')?.startsWith('#'));
 const navSections=navLinks.map(link=>document.querySelector(link.getAttribute('href'))).filter(Boolean);
 function updateScrollScene(){
  const viewport=innerHeight||1;
@@ -147,8 +147,7 @@ function updateScrollScene(){
  const projectsSection=document.querySelector('#projects');
  const contactSection=document.querySelector('#contact');
  let activeHref='#home';
- if(contactSection&&contactSection.getBoundingClientRect().top<=viewport*.55)activeHref='#about';
- else if(projectsSection&&projectsSection.getBoundingClientRect().top<=viewport*.45)activeHref='#projects';
+ if(projectsSection&&projectsSection.getBoundingClientRect().top<=viewport*.45)activeHref='#projects';
  navLinks.forEach(link=>{const active=link.getAttribute('href')===activeHref;link.classList.toggle('is-active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')});
 }
 let scrollFrame=0;
