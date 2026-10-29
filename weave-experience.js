@@ -139,13 +139,13 @@
   document.querySelectorAll('[data-element]').forEach((el,i)=>el.onclick=()=>dispatch('SELECT_ELEMENT',{element:i}));
   function result(){stopDrag();if(pendingEvolution){finishAfterEvolution=true;beginEvolution();return;}dispatch('FINISH');if(dirty)paint();const info=S.summary(state), canvas=$('#result'),p=canvas.getContext('2d');
     canvas.width=info.hasArtwork?fabric.width:1000;canvas.height=info.hasArtwork?fabric.height:300;p.clearRect(0,0,canvas.width,canvas.height);
-    if(info.hasArtwork)p.drawImage(fabric,0,0);else{p.fillStyle='#eae7df';p.fillRect(0,0,1000,300);p.fillStyle='#717963';p.font='24px serif';p.textAlign='center';p.fillText('尚未织入第一缕线。回到织轮，开始一次相遇。',500,150);}
+    if(info.hasArtwork)p.drawImage(fabric,0,0);else{p.fillStyle='#eae7df';p.fillRect(0,0,1000,300);p.fillStyle='#717963';p.font='24px serif';p.textAlign='center';p.fillText(window.PortfolioI18n?.t('尚未织入第一缕线。回到织轮，开始一次相遇。')||'尚未织入第一缕线。回到织轮，开始一次相遇。',500,150);}
     $('#download').disabled=!info.hasArtwork;$('#result-caption').textContent=`${info.turns.toFixed(2)} 圈 · ${cache.reduce((n,p)=>n+(p.generations||0),0)} 代演化 · ${info.elementSequence.map(i=>names[i]).join(' → ')||'等待第一缕线'}`;$('#completion').showModal();
   }
   $('#save').onclick=()=>{interruptEvolution();pendingEvolution=false;result();};$('#continue').onclick=()=>$('#completion').close();
   $('#completion').addEventListener('close',()=>{if(state.stage==='result')dispatch('CONTINUE');});
   document.querySelectorAll('.dialog-close').forEach(el=>el.onclick=()=>el.closest('dialog').close());
-  $('#new-game').onclick=()=>{if(!confirm('重新开始将清空当前创作，请先保存作品。继续吗？'))return;dispatch('RESET');cache=[];dirty=true;split=0;crank.rotation.x=0;beater.position.z=0;pedals.position.y=0;$('#completion').close();resize();start();transitionStart=performance.now()-1400;split=1;dispatch('APPROACH_DONE');};
+  $('#new-game').onclick=()=>{if(!confirm(window.PortfolioI18n?.t('重新开始将清空当前创作，请先保存作品。继续吗？')||'重新开始将清空当前创作，请先保存作品。继续吗？'))return;dispatch('RESET');cache=[];dirty=true;split=0;crank.rotation.x=0;beater.position.z=0;pedals.position.y=0;$('#completion').close();resize();start();transitionStart=performance.now()-1400;split=1;dispatch('APPROACH_DONE');};
   $('#download').onclick=()=>{const link=document.createElement('a');link.download=`生命织物-${Date.now()}.png`;link.href=$('#result').toDataURL('image/png');link.click();};
   function draw(t){
     if(!document.hidden&&!document.body.classList.contains('intro-pending')){
@@ -170,3 +170,4 @@
   start();transitionStart=performance.now()-1400;split=1;dispatch('APPROACH_DONE');
   window.weaveJourney={enter:start,get state(){return state.stage;},get evolving(){return evolving;},get data(){return JSON.parse(S.serialize(state));},get turn(){return state.effectiveAngle;},get generation(){return cache.reduce((n,p)=>n+(p.generations||0),0);},camera,model,surface,renderer};
 })();
+
