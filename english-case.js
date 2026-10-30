@@ -13,6 +13,11 @@
   let frame = 0;
   function markChapter() {
     frame = 0;
+    if (!reduced) {
+      const cover = document.querySelector('.ec-hero-art');
+      const bounds = cover.getBoundingClientRect();
+      if (bounds.bottom > 0) cover.style.setProperty('--cover-drift', Math.min(28,Math.max(0,-bounds.top)*.055)+'px');
+    }
     let current = sections[0];
     for (const section of sections) if (section.getBoundingClientRect().top <= innerHeight * .4) current = section;
     links.forEach(link => {
