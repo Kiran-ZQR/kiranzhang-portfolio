@@ -1,23 +1,10 @@
 (() => {
   'use strict';
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const links = [...document.querySelectorAll('[data-ec-toc]')];
   const sections = [...document.querySelectorAll('.ec-chapter')];
-  if (!reduced && 'IntersectionObserver' in window) {
-    const reveal = new IntersectionObserver(entries => {
-      entries.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('is-visible'); reveal.unobserve(entry.target); } });
-    }, {rootMargin:'0px 0px -25px 0px',threshold:0});
-    sections.forEach(section => reveal.observe(section));
-    document.documentElement.classList.add('ec-motion');
-  }
   let frame = 0;
   function markChapter() {
     frame = 0;
-    if (!reduced) {
-      const cover = document.querySelector('.ec-hero-art');
-      const bounds = cover.getBoundingClientRect();
-      if (bounds.bottom > 0) cover.style.setProperty('--cover-drift', Math.min(28,Math.max(0,-bounds.top)*.055)+'px');
-    }
     let current = sections[0];
     for (const section of sections) if (section.getBoundingClientRect().top <= innerHeight * .4) current = section;
     links.forEach(link => {
