@@ -1,4 +1,4 @@
-@font-face{font-family:Instrument;src:url(assets/fonts/instrument-sans-latin.woff2) format("woff2");font-weight:400 700;font-display:swap}
+@font-face{font-family:Instrument;src:url(../fonts/instrument-sans-latin.woff2) format("woff2");font-weight:400 700;font-display:swap}
 /* Flat, opaque controls match Home. No glass, highlights, or extra shell. */
 body .unified-navigation .primary-island,body .unified-navigation .primary-island:hover,body .unified-navigation .primary-island:focus-within,body .unified-navigation .primary-island.is-open,body .unified-navigation .detail-nav-shell>.case-switcher{background:#050506!important;border:1px solid #303033!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
 body .unified-navigation .case-tab.is-active,body .unified-navigation .case-tab:hover,body .unified-navigation .case-nav a:hover{background:#29292b!important;color:#fff!important;box-shadow:none!important}

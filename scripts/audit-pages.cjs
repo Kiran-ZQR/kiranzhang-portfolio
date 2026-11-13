@@ -1,7 +1,7 @@
 /* Read-only GitHub Pages readiness audit. Does not deploy or modify source assets. */
 const fs=require('node:fs'),path=require('node:path'),vm=require('node:vm');
 const root=path.resolve(__dirname,'..'),files=new Set(),missing=new Set();
-const entryFiles=fs.readdirSync(root).filter(f=>/\.(html|css|js)$/.test(f));
+const entryFiles=[...fs.readdirSync(root).filter(f=>/\.html$/.test(f)), ...['assets/css','assets/js'].flatMap(dir=>fs.readdirSync(path.join(root,dir)).filter(f=>/\.(css|js)$/.test(f)).map(f=>dir+'/'+f))];
 for(const file of entryFiles){
  files.add(file);
  const text=fs.readFileSync(path.join(root,file),'utf8');
@@ -14,9 +14,10 @@ for(const file of entryFiles){
   else if(!name.includes('${')&&!fs.existsSync(path.join(root,name)))missing.add(name);
  }
 }
-const config={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'config.js'),'utf8'),config);
+const config={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'assets/js/config.js'),'utf8'),config);
 function includeDirectory(relative){const full=path.join(root,relative);if(!fs.existsSync(full)){missing.add(relative);return}for(const entry of fs.readdirSync(full,{withFileTypes:true})){const next=relative+'/'+entry.name;if(entry.isDirectory())includeDirectory(next);else files.add(next)}}
-includeDirectory('assets/vendor/pdfjs');
+includeDirectory('assets');
+includeDirectory('en');
 // Scene images are resolved at runtime from the paired-page manifest.
 includeDirectory('assets/daynight');
 includeDirectory('assets/comments');

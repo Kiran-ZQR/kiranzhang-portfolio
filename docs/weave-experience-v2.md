@@ -6,16 +6,16 @@
 
 ## 文件和分阶段交付
 
-- Phase 1：weave-experience-state.js + scripts/test-weave-state.cjs，纯状态契约及 8 项回归测试。
-- Phase 2：新增 weave-experience.js，复用 loom-model.js 的同一 scene、model、Renderer。两个 PerspectiveCamera 通过 Scissor/Viewport 分屏；1.3 秒裁切展开与相机插值。桌面 65:35，窄屏上下 52:48。输入指针中心来自右侧/下方相机投影，不按全画布误算。
+- Phase 1：assets/js/weave-experience-state.js + scripts/test-weave-state.cjs，纯状态契约及 8 项回归测试。
+- Phase 2：新增 assets/js/weave-experience.js，复用 assets/js/loom-model.js 的同一 scene、model、Renderer。两个 PerspectiveCamera 通过 Scissor/Viewport 分屏；1.3 秒裁切展开与相机插值。桌面 65:35，窄屏上下 52:48。输入指针中心来自右侧/下方相机投影，不按全画布误算。
 - Phase 3：复用原木架及布面附着位置，新增连续折面从胸梁向前垂落。CanvasTexture 逐行显现，转轮、打纬器和踏板跟随实际角度。原连续布面几何仍保留，空白首页显示它。没有新增悬浮图案面板。
 - Phase 4：首圈默认木，整圈边界可重复选任意元素，未选自动循环。半圈结束、空结果、PNG、继续、显式重置、返回保留均已接入。localStorage 保存状态事件的紧凑结果，生成规则完全确定，可重建全部布面；未保存 Three 对象或大图片。
-- Phase 5：新增 weave-experience.css，原纸色/灰绿/木质保留，SVG 经线纬线 pattern 裁入字形，每字独立扫描揭示；约三秒织字，后出现模型。支持跳过、提前进入和 reduced-motion。删除 HTML 旧底部整行，原作详情及模型入口留在“关于原作”。
+- Phase 5：新增 assets/css/weave-experience.css，原纸色/灰绿/木质保留，SVG 经线纬线 pattern 裁入字形，每字独立扫描揭示；约三秒织字，后出现模型。支持跳过、提前进入和 reduced-motion。删除 HTML 旧底部整行，原作详情及模型入口留在“关于原作”。
 - Phase 6：触摸 Pointer Capture、跨 ±π、键盘小步、断拖、桌面/手机宽度、空状态、重复圈、8 圈边界、重新打开恢复均测试。阴影图避免两个视口重复刷新；纹理和几何不逐帧重建。
 
 ## 算法与容量
 
-life-weave-core.js 未修改。每圈以原五行 seed 图案播种（8 个位置，邻近重复），叠加前圈的演化网格；完成该圈时展示 B3/S23 的下一代。不是原来按时间自动演化 18 代，也不是新相生相克规则。历史圈段保持独立，不清除以前织物。
+assets/js/life-weave-core.js 未修改。每圈以原五行 seed 图案播种（8 个位置，邻近重复），叠加前圈的演化网格；完成该圈时展示 B3/S23 的下一代。不是原来按时间自动演化 18 代，也不是新相生相克规则。历史圈段保持独立，不清除以前织物。
 
 纹理为 1000 × 2048，每圈 256 行，上限 8 圈。此选择让纹样不再挤入 64 行的细条，也避免超过 2048 的纹理高度。超过两圈时在布面内连续缩放适配历史长布；导出仍保留全部原始行数。上限不是五行任务要求。
 

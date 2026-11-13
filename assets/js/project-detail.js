@@ -4,7 +4,7 @@ const switcher = document.querySelector('.case-switcher');
 const progress = document.querySelector('.reading-progress i');
 const diagnosis = document.querySelector('.diagnosis-sequence');
 
-// Glass is styled once on the actual navigation controls by project-glass.css.
+// Glass is styled once on the actual navigation controls by assets/css/project-glass.css.
 
 // Shared navigation CSS supplies local glass surfaces; avoid a full-width SVG filter.
 
