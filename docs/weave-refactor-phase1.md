@@ -4,16 +4,16 @@
 
 ## 当前实现与复用边界
 
-- 活跃入口：life-weave.html，加载 Three.js 0.160.1、life-weave-core.js、loom-model.js、weave-journey.js。原生脚本，无 React / GSAP，无需迁移框架。
-- loom-model.js 使用程序化几何建立木质织机，导出 LoomScene，共享模型、相机、Renderer、手柄、布料、打纬器及踏板。独立 loom-model.html 和已有 GLB 保留。
+- 活跃入口：life-weave.html，加载 Three.js 0.160.1、assets/js/life-weave-core.js、assets/js/loom-model.js、assets/js/weave-journey.js。原生脚本，无 React / GSAP，无需迁移框架。
+- assets/js/loom-model.js 使用程序化几何建立木质织机，导出 LoomScene，共享模型、相机、Renderer、手柄、布料、打纬器及踏板。独立 loom-model.html 和已有 GLB 保留。
 - 坐标 Y 向上，正面 +Z。手柄轴沿 X，中心 (1.04, 1.23, -0.76)。模型有连续布面几何和 UV；当前交互另加 1.3 × 0.78 的平面于 (0, 0.72, 0.985)，使用 1000 × 600 CanvasTexture。
 - 当前单相机整体→手柄→布面切换；转满一圈后播种，再以定时器运行 18 代。当前五种元素集齐才显示结果，退出会清空。
-- life-weave-core.js 是有限边界 B3/S23。五种种子及颜色身份保留，出生颜色按邻居多数决定，平票取较小编号。不存在独立相生相克算法，禁止杜撰。
-- 动效是 requestAnimationFrame 与相机插值，已有减少动态效果适配、DPR 上限和 WebGL 错误提示。旧 life-weave.js/css 非活跃原型，不删除。
+- assets/js/life-weave-core.js 是有限边界 B3/S23。五种种子及颜色身份保留，出生颜色按邻居多数决定，平票取较小编号。不存在独立相生相克算法，禁止杜撰。
+- 动效是 requestAnimationFrame 与相机插值，已有减少动态效果适配、DPR 上限和 WebGL 错误提示。旧 assets/js/life-weave.js/css 非活跃原型，不删除。
 
 ## 本阶段交付
 
-- weave-experience-state.js：无 DOM、无 Three.js 依赖的纯函数模块，支持浏览器全局和 CommonJS。
+- assets/js/weave-experience-state.js：无 DOM、无 Three.js 依赖的纯函数模块，支持浏览器全局和 CommonJS。
 - scripts/test-weave-state.cjs：Node 内置测试，无新增依赖。
 - 本文：状态契约、接入顺序、技术风险。
 
@@ -37,7 +37,7 @@ serialize / restore 仅支持该状态契约的 JSON 往返，拒绝损坏数据
 
 ## 下一阶段文件与实施顺序
 
-1. Phase 2：weave-journey.js 接入状态模块，life-weave.html 添加脚本；复用 Renderer 和 scene，新增布面/手柄相机，通过 viewport/scissor 渲染。CSS 实现桌面 65:35、移动上下。停止旧镜头/旧进度代码参与新流程，避免两套状态同时驱动。
+1. Phase 2：assets/js/weave-journey.js 接入状态模块，life-weave.html 添加脚本；复用 Renderer 和 scene，新增布面/手柄相机，通过 viewport/scissor 渲染。CSS 实现桌面 65:35、移动上下。停止旧镜头/旧进度代码参与新流程，避免两套状态同时驱动。
 2. Phase 3：将 CanvasTexture 与揭示区域适配连续布面 UV，分离机械角度、布料连续增长与离散演化。仅新增角度区间触发生成；旧轨迹累积不得被覆盖。生命规则不改；18 代的时间触发改为转轮节点触发需明确验证。根据实际纹理预算再确定圈数上限或分段存储，不在状态层硬编码五圈。
 3. Phase 4：完善元素控制、预览、PNG、继续/重置。加入网格和纹样快照或可复现生成参数，再启用完整会话持久化。
 4. Phase 5：首页织纹标题和可跳过入场，移除旧底栏；不修改作品集主首页的字母资产系统。新参考图需重新上传。

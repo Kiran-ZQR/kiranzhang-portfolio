@@ -1,4 +1,4 @@
-@font-face{font-family:Instrument;src:url('assets/fonts/instrument-sans-latin.woff2') format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:Instrument;src:url('../fonts/instrument-sans-latin.woff2') format('woff2');font-weight:400 700;font-display:swap}
 :root{color-scheme:dark;--ec-ink:#f4f4f5;--ec-muted:#a7a7af;--ec-line:#ffffff24;--ec-accent:#dedee3}
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:190px}
 body.english-editorial{margin:0;background:#09090b;color:var(--ec-ink);font-family:Instrument,Arial,sans-serif;-webkit-font-smoothing:antialiased}

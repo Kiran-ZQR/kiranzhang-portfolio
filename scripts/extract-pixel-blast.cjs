@@ -10,4 +10,4 @@ fragment=fragment.replace('vec3 color = uColor;',`float band = clamp((gl_FragCoo
   if(band >= 2.0) color = uPalette[2];
   if(band >= 3.0) color = uPalette[3];
   if(band >= 4.0) color = uPalette[4];`);
-fs.writeFileSync(path.join(__dirname,'../pixel-blast-shader.js'),'/* React Bits Pixel Blast shader supplied by the user; five-element palette adaptation.\n * https://reactbits.dev/backgrounds/pixel-blast\n * Original inspiration: zavalit/bayer-dithering-webgl-demo. */\nwindow.PixelBlastFragment='+JSON.stringify(fragment)+';\n');
+fs.writeFileSync(path.join(__dirname,'../assets/js/pixel-blast-shader.js'),'/* React Bits Pixel Blast shader supplied by the user; five-element palette adaptation.\n * https://reactbits.dev/backgrounds/pixel-blast\n * Original inspiration: zavalit/bayer-dithering-webgl-demo. */\nwindow.PixelBlastFragment='+JSON.stringify(fragment)+';\n');

@@ -9,4 +9,4 @@ for name in names:
     with Image.open(root / 'assets/elements-source' / name) as image:
         image = image.convert('RGB').resize((70, 70), Image.Resampling.NEAREST)
         samples.append(['#%02x%02x%02x' % pixel for pixel in image.getdata()])
-(root / 'element-source-data.js').write_text('/* Original graduation artwork: wood/fire/earth/metal/water. */\nwindow.ElementSourceData=' + json.dumps(samples, separators=(',', ':')) + ';\n', encoding='utf-8')
+(root / 'assets/js/element-source-data.js').write_text('/* Original graduation artwork: wood/fire/earth/metal/water. */\nwindow.ElementSourceData=' + json.dumps(samples, separators=(',', ':')) + ';\n', encoding='utf-8')

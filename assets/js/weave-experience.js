@@ -1,4 +1,4 @@
-/* Shared-scene weaving experience; legacy controller retained in weave-journey.js. */
+/* Shared-scene weaving experience; legacy controller retained in assets/js/weave-journey.js. */
 (() => {
   'use strict';
   const $ = q => document.querySelector(q), T = window.THREE, api = window.LoomScene;

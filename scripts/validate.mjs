@@ -3,7 +3,7 @@ import path from 'node:path';
 import vm from 'node:vm';
 import {fileURLToPath} from 'node:url';
 const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
-const context={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'config.js'),'utf8'),context);
+const context={window:{}};vm.runInNewContext(fs.readFileSync(path.join(root,'assets/js/config.js'),'utf8'),context);
 const c=context.window.LETTER_CONFIG;
 if(!c||typeof c.text!=='string'||!c.text.trim())throw Error('text must not be empty');
 const count=Array.from(c.text).filter(ch=>! /\s/.test(ch)).length;

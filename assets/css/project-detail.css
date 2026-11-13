@@ -355,7 +355,7 @@
 @media(prefers-reduced-motion:reduce){.story-char,.story-heading>span,.story-piece,.story-conclusion{opacity:1!important;translate:0!important;scale:1!important;filter:none!important;transition:none!important}.story-piece img{transform:none!important}.footer-select-char::before{transition:none}}
 
 /* Page 01 — live hero rebuilt from the Figma composition. */
-.case-hero-live,.context-live{position:relative;min-height:min(810px,56.25vw);overflow:hidden;border-bottom:1px solid rgba(120,231,196,.2);background:#020403 url("assets/project-detail/business-background-clean.png") center/cover no-repeat;isolation:isolate}
+.case-hero-live,.context-live{position:relative;min-height:min(810px,56.25vw);overflow:hidden;border-bottom:1px solid rgba(120,231,196,.2);background:#020403 url("../project-detail/business-background-clean.png") center/cover no-repeat;isolation:isolate}
 .case-hero-live::before,.context-live::before{content:"";position:absolute;z-index:0;left:5.55%;top:0;bottom:0;width:1px;background:rgba(120,231,196,.33);transform:scaleY(0);transform-origin:top;transition:transform 1.35s cubic-bezier(.16,1,.3,1)}
 .case-hero-live::after{content:"";position:absolute;z-index:0;left:0;right:0;top:33.6%;height:1px;background:rgba(120,231,196,.25);transform:scaleX(0);transform-origin:left;transition:transform 1.4s .18s cubic-bezier(.16,1,.3,1)}
 .case-hero-live.is-visible::before,.context-live.is-visible::before,.case-hero-live.is-visible::after{transform:scale(1)}
@@ -399,8 +399,8 @@
 @media(max-width:800px){.context-live{padding-top:calc(var(--header-h) + 20px)}}
 
 /* Project 1 + context use the final art-directed backgrounds supplied for each page. */
-.case-hero-live{background-image:url("assets/project-detail/business-hero-background.png")}
-.context-live{background-image:url("assets/project-detail/business-context-background.png")}
+.case-hero-live{background-image:url("../project-detail/business-hero-background.png")}
+.context-live{background-image:url("../project-detail/business-context-background.png")}
 
 /* Preserve the original Figma flow artwork; motion is limited to a calm entrance
    and a restrained interaction on the two logo nodes. */
@@ -692,4 +692,4 @@
 @keyframes chat-bubble-pop{0%{opacity:0;transform:translate3d(var(--chat-x),var(--chat-y),0) scale(.9)}70%{opacity:1;transform:translate3d(0,0,0) scale(1.012)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 @media(prefers-reduced-motion:reduce){.chat-overlay{display:none}}
 
-/* Navigation surfaces live exclusively in project-glass.css. */
+/* Navigation surfaces live exclusively in assets/css/project-glass.css. */

@@ -12,7 +12,7 @@
 
 创建自己的仓库并在 Codex 中打开，然后发送：
 
-> 请将这个模板的标题改为「你的标题」。先阅读 AGENTS.md 和 docs/MATERIALS.md，按我的每个非空格字符位置设计两种图片，重复字母使用不同元素。运用多种视觉语言，避免统一成一套 3D 图标。使用图像生成工具制作透明素材，检查字母可辨认、完整轮廓与小尺寸效果，压缩为 WebP，更新 config.js、网页标题和简介，并记录每张素材的构思与完整提示词。完成后运行检查并提供预览。
+> 请将这个模板的标题改为「你的标题」。先阅读 AGENTS.md 和 docs/MATERIALS.md，按我的每个非空格字符位置设计两种图片，重复字母使用不同元素。运用多种视觉语言，避免统一成一套 3D 图标。使用图像生成工具制作透明素材，检查字母可辨认、完整轮廓与小尺寸效果，压缩为 WebP，更新 assets/js/config.js、网页标题和简介，并记录每张素材的构思与完整提示词。完成后运行检查并提供预览。
 
 详细流程见 [素材设计与制作指南](docs/MATERIALS.md)。生成在 Codex 中完成，网页自身不调用图像生成接口。
 
@@ -28,7 +28,7 @@ python3 -m http.server 8000
 
 ## 修改配置
 
-编辑 config.js：
+编辑 assets/js/config.js：
 
 ```js
 window.LETTER_CONFIG = {
@@ -46,8 +46,8 @@ window.LETTER_CONFIG = {
 - 图片放入 assets/，imagesByPosition 按字符位置排列，不计算空格。
 - 每个位置可放一张或多张；空数组或缺省会保持文字。连续展示会尽量避开上一张。
 - 修改 text 后也要调整素材映射。自带素材只覆盖示例 `boknows word`，不会自动生成其他字母图片。
-- 当前排版适合短标题；长标题应同步调整 style.css 中 h1 的字号和页面宽度。
-- index.html 修改辅助文案、标签、网页标题和简介；style.css 修改颜色、布局和字间距。
+- 当前排版适合短标题；长标题应同步调整 assets/css/style.css 中 h1 的字号和页面宽度。
+- index.html 修改辅助文案、标签、网页标题和简介；assets/css/style.css 修改颜色、布局和字间距。
 - 可把自己的视频放入 assets/，将 backgroundVideo 设为 `assets/your-video.webm`。默认静音循环并铺满，比例不同会裁切。页脚“上传背景视频”为本地临时预览，文件不上传服务器，刷新后清空。
 
 ## 交互与适配
@@ -56,9 +56,9 @@ window.LETTER_CONFIG = {
 
 ## 文件
 
-- config.js：公开配置入口
-- app.js：动画与背景视频交互
-- style.css / index.html：样式与结构
+- assets/js/config.js：公开配置入口
+- assets/js/app.js：动画与背景视频交互
+- assets/css/style.css / index.html：样式与结构
 - assets/：22 张透明 WebP，总量约 1.98 MB
 - docs/MATERIALS.md：素材制作方法与设计规则
 - docs/materials.json：内置布艺示例的完整提示词、位置、文件名和说明
@@ -67,7 +67,7 @@ window.LETTER_CONFIG = {
 ## 验证
 
 ```sh
-node --check app.js
+node --check assets/js/app.js
 node scripts/validate.mjs
 ```
 
@@ -79,4 +79,4 @@ node scripts/validate.mjs
 
 ---
 
-**English:** A dependency-free, configurable text-to-image portfolio hero with hover/touch interaction, randomized image variants, elastic transitions, and 22 sample textile assets and an open-ended mixed-media generation workflow. Edit config.js, replace assets/, and open index.html. Full generation prompts and workflow are included in docs/. MIT licensed.
+**English:** A dependency-free, configurable text-to-image portfolio hero with hover/touch interaction, randomized image variants, elastic transitions, and 22 sample textile assets and an open-ended mixed-media generation workflow. Edit assets/js/config.js, replace assets/, and open index.html. Full generation prompts and workflow are included in docs/. MIT licensed.

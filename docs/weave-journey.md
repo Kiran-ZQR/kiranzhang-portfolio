@@ -1,6 +1,6 @@
 # Guided loom experience
 
-> Historical controller documentation. Since 2026-10-10, the active page loads `weave-experience.js` and `weave-experience-state.js`. The old controller is retained but not loaded. See `weave-experience-v2.md` for the current flow and tests below; the five-element completion requirement described here no longer applies.
+> Historical controller documentation. Since 2026-10-10, the active page loads `assets/js/weave-experience.js` and `assets/js/weave-experience-state.js`. The old controller is retained but not loaded. See `weave-experience-v2.md` for the current flow and tests below; the five-element completion requirement described here no longer applies.
 
 The third homepage category opens `life-weave.html`, now the integrated model-led experience. `loom-model.html` remains a separate geometry preview and GLB exporter. No homepage category layout was changed.
 
@@ -8,7 +8,7 @@ The third homepage category opens `life-weave.html`, now the integrated model-le
 
 Idle full loom → click model or Start → approach, side orbit, straight-on crank → select element → drag one net revolution and release → orbit to front fabric → show seed markers for one second → 18 generations of B3/S23 → manual commit → keep historical traces → choose next element and return to crank. All five distinct elements opens a generated PNG result. Free play is available after completion.
 
-The initial seeded patterns repeat around eight marked anchor positions. The simulation runs on the actual model's front cloth via a dynamic canvas texture, not on a separate screen. Crank rotation is a pivoted component. Beater and treadles receive subtle illustrative motion at commit; this is not a mechanical engineering simulation. The original reference-based mesh is reused via the `guided` branch of `loom-model.js`.
+The initial seeded patterns repeat around eight marked anchor positions. The simulation runs on the actual model's front cloth via a dynamic canvas texture, not on a separate screen. Crank rotation is a pivoted component. Beater and treadles receive subtle illustrative motion at commit; this is not a mechanical engineering simulation. The original reference-based mesh is reused via the `guided` branch of `assets/js/loom-model.js`.
 
 ## Input and boundaries
 

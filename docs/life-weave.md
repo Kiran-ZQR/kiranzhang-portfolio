@@ -1,6 +1,6 @@
 # 生命之轮：五元编织
 
-> Historical notes for the original 2D prototype. The active page now uses the integrated 3D crank-to-cloth journey. See [weave-journey.md](weave-journey.md) for current behavior, dependencies and tests. `life-weave.js` / `life-weave.css` are retained but no longer loaded by the page.
+> Historical notes for the original 2D prototype. The active page now uses the integrated 3D crank-to-cloth journey. See [weave-journey.md](weave-journey.md) for current behavior, dependencies and tests. `assets/js/life-weave.js` / `assets/css/life-weave.css` are retained but no longer loaded by the page.
 
 Entry: homepage third category → `life-weave.html`. Standalone vanilla HTML/CSS/Canvas; no runtime packages, remote requests, backend, or API keys. Works via file URL or static hosting.
 
@@ -21,7 +21,7 @@ These are original image assets, not design screenshots. Pattern images retain t
 
 ## Adaptation and rules
 
-The physical rotating selector and pedal become five element selectors, symmetric seed planting, and a weave action. Conway B3/S23 runs in `life-weave-core.js` on a 100×44 finite grid. Surviving cells retain colour, births inherit the majority neighbour colour. Colour ties resolve by element index. Five seed patterns create different lifelike behaviours. Planting repeats seeds along the warp/weft; no automatic random births occur during simulation. Disappearing cells leave traces. Weaving commits those traces, and the final textile mirrors/repeats them as a new artwork.
+The physical rotating selector and pedal become five element selectors, symmetric seed planting, and a weave action. Conway B3/S23 runs in `assets/js/life-weave-core.js` on a 100×44 finite grid. Surviving cells retain colour, births inherit the majority neighbour colour. Colour ties resolve by element index. Five seed patterns create different lifelike behaviours. Planting repeats seeds along the warp/weft; no automatic random births occur during simulation. Disappearing cells leave traces. Weaving commits those traces, and the final textile mirrors/repeats them as a new artwork.
 
 Added for the web: five-element progression, optional synthesized notes, keyboard/touch input, a full-screen button, downloadable generated canvas, and free play. No multiplayer, external AI generation, or persistence is claimed. Reloading resets the experience. Sound defaults off. Background-tab rendering stops and dialogs pause evolution. Reduced-motion preference disables introductory drift and shortens the weaving transition.
 

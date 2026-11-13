@@ -1,6 +1,6 @@
 /* Editorial split rows: independent project artwork. */
-@font-face{font-family:"Instrument Sans";src:url("assets/fonts/instrument-sans-latin.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
-@font-face{font-family:"Geist Mono";src:url("assets/fonts/geist-mono-latin.woff2") format("woff2");font-style:normal;font-weight:400 500;font-display:swap}
+@font-face{font-family:"Instrument Sans";src:url("../fonts/instrument-sans-latin.woff2") format("woff2");font-style:normal;font-weight:400 700;font-display:swap}
+@font-face{font-family:"Geist Mono";src:url("../fonts/geist-mono-latin.woff2") format("woff2");font-style:normal;font-weight:400 500;font-display:swap}
 #projects{--work-line:#ffffff24;--work-accent:#e6a27d;padding-top:50px;background:#000;font-family:"Instrument Sans","Noto Sans SC","Microsoft YaHei",sans-serif}
 #projects .projects-intro{margin:0;min-height:100px;padding:24px 20px;border:1px solid var(--work-line);border-bottom:0}
 #projects .project-gallery{display:block;gap:0;max-width:none;width:100%}

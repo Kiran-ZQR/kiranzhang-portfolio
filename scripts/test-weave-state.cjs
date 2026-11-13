@@ -1,7 +1,7 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
-const S = require('../weave-experience-state.js');
-const core = require('../life-weave-core.js');
+const S = require('../assets/js/weave-experience-state.js');
+const core = require('../assets/js/life-weave-core.js');
 const send = (s, type, extra = {}) => S.reduce(s, { type, ...extra });
 const start = () => send(send(S.create(), 'ENTER'), 'APPROACH_DONE');
 const turn = (s, delta = Math.PI / 2) => send(s, 'ROTATE', { delta });
@@ -24,7 +24,7 @@ test('128 turns and restored boundaries finish under an independent watchdog', a
     }
     assert.equal(S.summary(s).turns,128);
     parentPort.postMessage('ok');
-  `, {eval:true,workerData:require.resolve('../weave-experience-state.js')});
+  `, {eval:true,workerData:require.resolve('../assets/js/weave-experience-state.js')});
   await new Promise((resolve,reject)=>{
     const timer=setTimeout(()=>{worker.terminate();reject(new Error('Angle reducer froze at a circle boundary'));},3000);
     worker.once('message',()=>{clearTimeout(timer);resolve();});
